@@ -1,0 +1,6 @@
+framework module Pods_Farm {
+  umbrella header "Pods-Farm-umbrella.h"
+
+  export *
+  module * { export * }
+}
