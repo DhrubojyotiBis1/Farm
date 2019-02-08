@@ -18,17 +18,6 @@ class Login: UIViewController {
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     
-    //MARK:- takes the user to home page if login is done previously:
-    override func viewWillAppear(_ animated: Bool) {
-        if(getLoginData()){
-            self.view.isHidden = true
-        }
-    }
-    override func viewDidAppear(_ animated: Bool) {
-        if(getLoginData()){
-            goToHome()
-        }
-    }
     //MARK:-
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,39 +66,9 @@ class Login: UIViewController {
         performSegue(withIdentifier: "goToHome", sender: nil)
     }
     private func saveLoginData(username: String,password:String){
-        //TODO: saves the login data to local database for future:
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
-        
-        let userData = NSEntityDescription.insertNewObject(forEntityName: "LoginData", into: context)
-        
-        userData.setValue(username, forKey: "username")
-        userData.setValue(password, forKey: "password")
-        
-        do{
-            try context.save()
-            
-        }catch{
-            print("Error while saving data!")
-        }
-        
-    }
-    
-    private func getLoginData()->Bool{
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "LoginData")
-        request.returnsObjectsAsFaults = false
-        do{
-            let results = try context.fetch(request)
-            if(results.count>0){
-                return true
-            }
-        }catch{
-            print("Error while getting data!")
-        }
-        
-        return false
+        //TODO: saves the login data User defoult i.e in a small database:
+        UserDefaults.standard.set(username, forKey: "username")
+        UserDefaults.standard.set(password, forKey: "password")
     }
     
     private func showAlertForError(withMessage message : String){
