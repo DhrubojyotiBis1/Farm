@@ -23,26 +23,26 @@ class Login: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         fixUI()
-        
     }
-    
     
     @IBAction func onLoginButtonClicked(_ sender: Any) {
         checkLoginof(userName: userName.text!, andPassword: password.text!)
         SVProgressHUD.show()
+        goToHome()
     }
     
-    //MARK:-
+
     private func checkLoginof(userName name : String , andPassword password :String){
         //TODO: Networking is done here :
-        let url="http://axxentfarms.com/farm/files/pages/app/login.php?"
-        Alamofire.request(url ,method: .post , parameters : ["email": name,"password" : password]).responseJSON { (response) in
+        let url = URL()
+        Alamofire.request(url.loginUrl ,method: .post , parameters : ["email": name,"password" : password]).responseJSON { (response) in
             if response.result.isSuccess{
                 let userJSON : JSON = JSON(response.result.value!)
                 self.checkLoginStatus(json: userJSON)
             }else{
                 print("Error")
                 self.showAlertForError(withMessage: "Check your internet connection")
+                self.saveLoginData(username: self.userName.text!, password: self.password.text!,type: 0)
             }
         }
     }
@@ -53,8 +53,7 @@ class Login: UIViewController {
         if(json["login_status"]==1){
             print(json)
             SVProgressHUD.dismiss()
-            saveLoginData(username: userName.text!, password: password.text!)
-            goToHome()
+            saveLoginData(username: userName.text!, password: password.text!, type: 0)
         }else{
            showAlertForError(withMessage: "Invalid username or password")
         }
@@ -63,12 +62,15 @@ class Login: UIViewController {
     
     private func goToHome(){
         //TODO: takes the user to home page:
-        performSegue(withIdentifier: "goToHome", sender: nil)
+        performSegue(withIdentifier: "goToAdmin", sender: nil)
     }
-    private func saveLoginData(username: String,password:String){
+    private func saveLoginData(username: String,password:String,type: Int){
         //TODO: saves the login data User defoult i.e in a small database:
         UserDefaults.standard.set(username, forKey: "username")
         UserDefaults.standard.set(password, forKey: "password")
+        UserDefaults.standard.set(type, forKey: "type")
+        
+        
     }
     
     private func showAlertForError(withMessage message : String){

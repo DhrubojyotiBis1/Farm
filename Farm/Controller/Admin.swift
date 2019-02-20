@@ -23,11 +23,7 @@ class Home: UIViewController {
         //TODO: takes the user to the login page when logout button is clicked
         UserDefaults.standard.removeObject(forKey: "username")
         UserDefaults.standard.removeObject(forKey: "password")
-        let viewController = storyboard!.instantiateViewController(withIdentifier: "Login")
-        let navigationViewController = UINavigationController(rootViewController: viewController)
-        let share = UIApplication.shared.delegate as? AppDelegate
-        share?.window?.rootViewController = navigationViewController
-        share?.window?.makeKeyAndVisible()
-
+        UserDefaults.standard.removeObject(forKey: "type")
+        dismiss(animated: true, completion: nil)
         }
 }
