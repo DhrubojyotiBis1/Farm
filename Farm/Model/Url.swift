@@ -10,5 +10,6 @@ import Foundation
 
 class URL {
     let loginUrl="http://axxentfarms.com/farm/files/pages/app/login.php?"
+    let dataUrl = "http://axxentfarms.com/farm/files/pages/app/fetchtable.php"
 }
 

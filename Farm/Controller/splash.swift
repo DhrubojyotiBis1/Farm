@@ -25,15 +25,16 @@ class splash: UIViewController {
             let type = Int(String(describing: (UserDefaults.standard.value(forKey: "type"))!))!
             
             switch type {
-            case 0:
+            case 1:
                 performSegue(withIdentifier: "goToAdmin", sender: nil)
                 break
-            case 1:
+            case 2:
             //TODO: performsegur that takes to manager
                 performSegue(withIdentifier: "goToManager", sender: nil)
                 break
-            case 2:
+            case 3:
             //TODO: performsegue that takes to the Auditor
+                performSegue(withIdentifier: "goToAuditor", sender: nil)
                 break
             default:
                 print("Error")
