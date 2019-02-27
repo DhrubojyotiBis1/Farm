@@ -11,7 +11,7 @@ import Alamofire
 import SwiftyJSON
 import SVProgressHUD
 
-class adminHome: UIViewController,UITableViewDataSource,UITableViewDelegate{
+class adminManager: UIViewController,UITableViewDataSource,UITableViewDelegate{
     
     @IBOutlet weak var tableView: UITableView!
     var name = [String]()
@@ -23,7 +23,6 @@ class adminHome: UIViewController,UITableViewDataSource,UITableViewDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        tableView.separatorColor = UIColor(white: 0.95, alpha: 1)
         tableView.delegate = self
         tableView.dataSource = self
         networking()
@@ -73,7 +72,7 @@ class adminHome: UIViewController,UITableViewDataSource,UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = self.tableView.dequeueReusableCell(withIdentifier: "adminCell", for: indexPath) as! adminCell
+        let cell = self.tableView.dequeueReusableCell(withIdentifier: "adminManagerCell", for: indexPath) as! adminManagerCell
         cell.backgroundColor = UIColor(white: 0.95, alpha: 1)
         cell.name.text = name[indexPath.row]
         cell.userName.text = "Username: \(userName[indexPath.row])"

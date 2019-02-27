@@ -16,8 +16,10 @@
 		6F20E6E6220CD7E60075A04B /* Farm.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6F20E6E4220CD7E60075A04B /* Farm.xcdatamodeld */; };
 		6F20E6E8220CD7E90075A04B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F20E6E7220CD7E90075A04B /* Assets.xcassets */; };
 		6F20E6EB220CD7E90075A04B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F20E6E9220CD7E90075A04B /* LaunchScreen.storyboard */; };
-		6F52A2B52225BAAB00ED3C82 /* adminCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F52A2B42225BAAB00ED3C82 /* adminCell.swift */; };
-		6FD32367220E2D490002B695 /* adminHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD32366220E2D490002B695 /* adminHome.swift */; };
+		6F52A2B52225BAAB00ED3C82 /* adminManagerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F52A2B42225BAAB00ED3C82 /* adminManagerCell.swift */; };
+		6F52A2DE222742CF00ED3C82 /* adminAuditorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F52A2DD222742CF00ED3C82 /* adminAuditorCell.swift */; };
+		6F52A2E1222744B200ED3C82 /* adminAuditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F52A2E0222744B200ED3C82 /* adminAuditor.swift */; };
+		6FD32367220E2D490002B695 /* adminManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD32366220E2D490002B695 /* adminManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,8 +36,10 @@
 		6F20E6E7220CD7E90075A04B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6F20E6EA220CD7E90075A04B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6F20E6EC220CD7E90075A04B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6F52A2B42225BAAB00ED3C82 /* adminCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = adminCell.swift; sourceTree = "<group>"; };
-		6FD32366220E2D490002B695 /* adminHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = adminHome.swift; sourceTree = "<group>"; };
+		6F52A2B42225BAAB00ED3C82 /* adminManagerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = adminManagerCell.swift; sourceTree = "<group>"; };
+		6F52A2DD222742CF00ED3C82 /* adminAuditorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = adminAuditorCell.swift; sourceTree = "<group>"; };
+		6F52A2E0222744B200ED3C82 /* adminAuditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = adminAuditor.swift; sourceTree = "<group>"; };
+		6FD32366220E2D490002B695 /* adminManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = adminManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,9 +76,9 @@
 			children = (
 				6F20E6DD220CD7E60075A04B /* AppDelegate.swift */,
 				6F20E6DF220CD7E60075A04B /* Login.swift */,
-				6FD32366220E2D490002B695 /* adminHome.swift */,
 				6F19AB88220F29A500253C51 /* splash.swift */,
-				6F52A2B42225BAAB00ED3C82 /* adminCell.swift */,
+				6F52A2E3222744DA00ED3C82 /* adminClasses */,
+				6F52A2DF2227445500ED3C82 /* Custom Cells */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -125,6 +129,24 @@
 				6F20E6E4220CD7E60075A04B /* Farm.xcdatamodeld */,
 			);
 			path = Farm;
+			sourceTree = "<group>";
+		};
+		6F52A2DF2227445500ED3C82 /* Custom Cells */ = {
+			isa = PBXGroup;
+			children = (
+				6F52A2B42225BAAB00ED3C82 /* adminManagerCell.swift */,
+				6F52A2DD222742CF00ED3C82 /* adminAuditorCell.swift */,
+			);
+			path = "Custom Cells";
+			sourceTree = "<group>";
+		};
+		6F52A2E3222744DA00ED3C82 /* adminClasses */ = {
+			isa = PBXGroup;
+			children = (
+				6FD32366220E2D490002B695 /* adminManager.swift */,
+				6F52A2E0222744B200ED3C82 /* adminAuditor.swift */,
+			);
+			path = adminClasses;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -251,11 +273,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6F52A2B52225BAAB00ED3C82 /* adminCell.swift in Sources */,
+				6F52A2E1222744B200ED3C82 /* adminAuditor.swift in Sources */,
+				6F52A2B52225BAAB00ED3C82 /* adminManagerCell.swift in Sources */,
 				6F20E6E0220CD7E60075A04B /* Login.swift in Sources */,
+				6F52A2DE222742CF00ED3C82 /* adminAuditorCell.swift in Sources */,
 				6F20E6DE220CD7E60075A04B /* AppDelegate.swift in Sources */,
 				6F19AB89220F29A500253C51 /* splash.swift in Sources */,
-				6FD32367220E2D490002B695 /* adminHome.swift in Sources */,
+				6FD32367220E2D490002B695 /* adminManager.swift in Sources */,
 				6F20E6E6220CD7E60075A04B /* Farm.xcdatamodeld in Sources */,
 				6F19AB44220EB2F800253C51 /* Url.swift in Sources */,
 			);

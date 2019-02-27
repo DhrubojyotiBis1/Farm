@@ -1,23 +1,21 @@
 //
-//  adminCell.swift
+//  adminAuditorCell.swift
 //  Farm
 //
-//  Created by Dhrubojyoti on 26/02/19.
+//  Created by Dhrubojyoti on 28/02/19.
 //  Copyright © 2019 Dhrubojyoti. All rights reserved.
 //
 
 import UIKit
 
-class adminCell: UITableViewCell {
+class adminAuditorCell: UITableViewCell {
 
-    @IBOutlet weak var managerId: UILabel!
-    @IBOutlet weak var contact: UILabel!
+    @IBOutlet weak var view: UIView!
+    @IBOutlet weak var contactNumber: UILabel!
     @IBOutlet weak var email: UILabel!
+    @IBOutlet weak var managerId: UILabel!
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var name: UILabel!
-    
-    @IBOutlet weak var view: UIView!
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -28,7 +26,7 @@ class adminCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
+
     override func layoutSubviews() {
         view.layer.cornerRadius = 5
         view.layer.masksToBounds = false
