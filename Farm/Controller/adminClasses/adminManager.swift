@@ -23,8 +23,10 @@ class adminManager: UIViewController,UITableViewDataSource,UITableViewDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        configureTableView()
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.backgroundColor = UIColor(white: 0.95, alpha: 1)
         networking()
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -90,6 +92,10 @@ class adminManager: UIViewController,UITableViewDataSource,UITableViewDelegate{
         alert.addAction(reEnter)
         present(alert, animated: true, completion: nil)
         SVProgressHUD.dismiss()
+    }
+    func configureTableView(){
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 120.0
     }
     
 }
