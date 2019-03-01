@@ -43,6 +43,9 @@ class adminAuditor: UIViewController,UITableViewDelegate,UITableViewDataSource {
         }
     }
     
+    @IBAction func addButtonPressed(_ sender: Any) {
+        performSegue(withIdentifier: "createAccount", sender: sender)
+    }
     private func dataParsing(json : JSON){
         for  i in 0...(json["login_user"].count - 1){
             if(json["login_user"][i]["type"] == "3"){

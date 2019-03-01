@@ -48,6 +48,9 @@ class adminFarm: UIViewController,UITableViewDelegate,UITableViewDataSource{
         }
     }
     
+    @IBAction func addButtonPressed(_ sender: Any) {
+        performSegue(withIdentifier: "add", sender: sender)
+    }
     private func dataParsing(json : JSON){
         for  i in 0...(json["add_f"].count - 1){
             farmName.append(json["add_f"][i]["farm_n"].string!)
@@ -72,7 +75,7 @@ class adminFarm: UIViewController,UITableViewDelegate,UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "auditorFarmCell", for: indexPath) as! adminFarmCell
         
         cell.backgroundColor = UIColor(white: 0.95, alpha: 1)
-        cell.name.text = "Name: "+farmName[indexPath.row]
+        cell.name.text = "Fram Name: "+farmName[indexPath.row]
         cell.farmSize.text = "Farmsize: "+farmSize[indexPath.row]
         cell.descriptions.text = "Description: " + descriptions[indexPath.row]
         if location.isEmpty == false {

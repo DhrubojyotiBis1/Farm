@@ -68,6 +68,9 @@ class adminManager: UIViewController,UITableViewDataSource,UITableViewDelegate{
         self.tableView.reloadData()
         SVProgressHUD.dismiss()
     }
+    @IBAction func addButtonPressed(_ sender: Any) {
+        performSegue(withIdentifier: "createAccount", sender: sender)
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return name.count
     }

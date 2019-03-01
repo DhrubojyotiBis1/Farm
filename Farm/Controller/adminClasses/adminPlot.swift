@@ -21,6 +21,7 @@ class adminPlot: UIViewController,UITableViewDelegate,UITableViewDataSource {
     var location = [String]()
     var plotName = [String]()
     var managerName = [String]()
+    var realManagerId = [String]()
     var managerId = [String]()
     let dispatchGroup = DispatchGroup()
     
@@ -42,15 +43,25 @@ class adminPlot: UIViewController,UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "adminPlotCell", for: indexPath) as! adminPlotCell
         cell.backgroundColor = UIColor(white: 0.95, alpha: 1)
-        cell.name.text = "Name: "+plotName[indexPath.row]
+        cell.name.text = "Plot Name: "+plotName[indexPath.row]
         cell.plotSize.text = "Farmsize: "+farmSize[indexPath.row]
         cell.descriptions.text = "Description: " + descriptions[indexPath.row]
         if location.isEmpty == false {
             cell.location.text = "Location: " + location[indexPath.row]
+            
+            for i in 0..<realManagerId.count{
+                if managerId[indexPath.row] == realManagerId[i]{
+                    cell.manager.text = "Manager: " + managerName[i]
+                }
+            }
         }
+        
         return cell
     }
     
+    @IBAction func addButtonPressed(_ sender: Any) {
+        performSegue(withIdentifier: "add", sender: sender)
+    }
     
     private func networking(){
         //TODO: Networking is done here :
@@ -60,6 +71,7 @@ class adminPlot: UIViewController,UITableViewDelegate,UITableViewDataSource {
             if response.result.isSuccess{
                 let userjson:JSON = JSON(response.result.value!)
                 self.dataParsing(json: userjson)
+                self.getManagerData(json: userjson)
             }else{
                 print("Error")
                 self.showAlertForError(withMessage: "Check your internet connection")
@@ -71,6 +83,7 @@ class adminPlot: UIViewController,UITableViewDelegate,UITableViewDataSource {
             plotName.append(json["add_farm"][i]["farm_name"].string!)
             farmSize.append(json["add_farm"][i]["farm_size"].string!)
             descriptions.append(json["add_farm"][i]["farm_disc"].string!)
+            managerId.append(json["add_farm"][i]["farm_manager"].string!)
             let latitude = json["add_farm"][i]["farmlat"].string!
             let longitude = json["add_farm"][i]["farmlong"].string!
             self.getAddressFromLatLon(pdblLatitude:latitude , withLongitude: longitude)
@@ -158,5 +171,14 @@ class adminPlot: UIViewController,UITableViewDelegate,UITableViewDataSource {
         alert.addAction(reEnter)
         present(alert, animated: true, completion: nil)
         SVProgressHUD.dismiss()
+    }
+    
+    private func getManagerData(json : JSON){
+        for  i in 0...(json["login_user"].count - 1){
+            if(json["login_user"][i]["type"] == "2"){
+                realManagerId.append(json["login_user"][i]["id"].string!)
+                managerName.append(json["login_user"][i]["name"].string!)
+            }
+        }
     }
 }
