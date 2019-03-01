@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import Alamofire
+import SVProgressHUD
+import SwiftyJSON
 
 class adminFarmActivity: UIViewController ,UITableViewDelegate,UITableViewDataSource{
 
-    let content = ["hdsgjhagdhagdhgajhgshgdhajsgdajhgdhagdhasghgdjhagsdgjhgajsdhsgdhjsgfhfghsdfghjsdgfhjgjhsdgfhgsdhgsjhgfhsjgfhjfgsjhghfgsjhghjsgdjhfghjdsgfhjgfshjdghjfghjdgsjhfgshdgjhdfgshjgfhjsgfjhgfhjsdghjdgshjgfhjdghjfgsj","jadhjkdhjashdhjsaghdjgajhdgahsjdgahjdghajghdgahjdgahgdajhgsdja","jdashdhajsdhjjahajdhjsdghjagshdgsfdhgafgsfdghsfdhgafsghfaghsfdghasfaghdfhasfhgdfsaghfdhgdfaghsfdhgfdghfasgfahsgfahgdfghdfshgdfahgsdfghafshgdfsahgdfagda","sdhjahjdhajsgdahjgdjhagsjh"]
-    let name = ["sdfagsdfh","dsaghgsadgdfhsdjfgjhsdgjhjfhjshghgfhjsgfhsghdgjfgsjhdgfhjgsjfhgfsjhgfjhsgfshjfghfgshjfgshjghjfgj","dasjahjsgdahddasd","asdhshjdgadhjg"]
+    var descriptions = [String]()
+    var farmName = [String]()
     
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
@@ -21,18 +24,56 @@ class adminFarmActivity: UIViewController ,UITableViewDelegate,UITableViewDataSo
         configureTableView()
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.backgroundColor = UIColor(white: 0.95, alpha: 1)
+        networking()
+    }
+    
+    private func networking(){
+        //TODO: Networking is done here :
+        SVProgressHUD.show()
+        let url = URL()
+        Alamofire.request(url.dataUrl).responseJSON { (response) in
+            if response.result.isSuccess{
+                let userjson:JSON = JSON(response.result.value!)
+                self.dataParsing(json: userjson)
+            }else{
+                print("Error")
+                self.showAlertForError(withMessage: "Check your internet connection")
+            }
+        }
+    }
+    
+    private func dataParsing(json : JSON){
+        for  i in 0...(json["addfarmactivity"].count - 1){
+            self.farmName.append(json["addfarmactivity"][i]["activity_name"].string!)
+            self.descriptions.append(json["addfarmactivity"][i]["activity_name"].string!)
+            
+        }
+        self.tableView.reloadData()
+        SVProgressHUD.dismiss()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return name.count
+        return farmName.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "adminFarmActivityCell", for: indexPath) as! adminFarmActivityCell
-        cell.farmDescription.text = content[indexPath.row]
-        cell.name.text = name[indexPath.row]
-        
+        cell.backgroundColor = UIColor(white: 0.95, alpha: 1)
+        cell.farmDescription.text = "Description: \(descriptions[indexPath.row])"
+        cell.name.text = "Name: \(farmName[indexPath.row])"
         return cell
+    }
+    
+    private func showAlertForError(withMessage message : String){
+        //TODO: check wether username or password enntered is wrong:
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        let reEnter = UIAlertAction(title: "Retry", style: .default) { (action) in
+            self.networking()
+        }
+        alert.addAction(reEnter)
+        present(alert, animated: true, completion: nil)
+        SVProgressHUD.dismiss()
     }
     
     func configureTableView(){

@@ -23,7 +23,6 @@ class adminAuditor: UIViewController,UITableViewDelegate,UITableViewDataSource {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        configureTableView()
         tableView.backgroundColor = UIColor(white: 0.95, alpha: 1)
         tableView.dataSource = self
         tableView.delegate = self
@@ -81,9 +80,6 @@ class adminAuditor: UIViewController,UITableViewDelegate,UITableViewDataSource {
         present(alert, animated: true, completion: nil)
         SVProgressHUD.dismiss()
     }
-    func configureTableView(){
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 120.0
-    }
+    
     
 }
