@@ -441,15 +441,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gMc-zV-8Da">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gMc-zV-8Da">
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="auditorFarm" rowHeight="140" id="Hvd-GC-MQn" customClass="adminFarmCell" customModule="Farm" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="auditorFarmCell" rowHeight="140" id="Hvd-GC-MQn" customClass="adminFarmCell" customModule="Farm" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="140"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Hvd-GC-MQn" id="8yh-M8-Tk9">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="139.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="140"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MpG-M1-X51">
@@ -501,6 +501,13 @@
                                                 <constraint firstItem="MpG-M1-X51" firstAttribute="top" secondItem="8yh-M8-Tk9" secondAttribute="top" constant="11" id="fi6-q4-Ji7"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="descriptions" destination="OgZ-5W-xrx" id="Ufo-u3-8jf"/>
+                                            <outlet property="farmSize" destination="kYM-sm-in1" id="sEg-XZ-TXr"/>
+                                            <outlet property="location" destination="uon-1K-lCU" id="HLI-Og-OhB"/>
+                                            <outlet property="name" destination="CPt-iY-pQp" id="lSX-W2-5ho"/>
+                                            <outlet property="view" destination="MpG-M1-X51" id="tyf-kB-XdA"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -515,6 +522,9 @@
                         <viewLayoutGuide key="safeArea" id="KBw-sD-LMO"/>
                     </view>
                     <navigationItem key="navigationItem" title="Farm" id="RmD-AO-PzM"/>
+                    <connections>
+                        <outlet property="tableView" destination="gMc-zV-8Da" id="3dX-Gl-VZ1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="heL-zz-Y8W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
