@@ -1,37 +1,56 @@
 //
-//  adminFarm.swift
+//  adminPlot.swift
 //  Farm
 //
-//  Created by Dhrubojyoti on 28/02/19.
+//  Created by Dhrubojyoti on 02/03/19.
 //  Copyright © 2019 Dhrubojyoti. All rights reserved.
 //
 
 import UIKit
-import Alamofire
 import SwiftyJSON
+import Alamofire
 import SVProgressHUD
 import CoreLocation
 
-class adminFarm: UIViewController,UITableViewDelegate,UITableViewDataSource{
+class adminPlot: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
+    @IBOutlet weak var tableView: UITableView!
     var farmName = [String]()
     var farmSize = [String]()
     var descriptions = [String]()
     var location = [String]()
-    //TODO: DispatchGroup is used to wait untill the data is fetch back
+    var plotName = [String]()
+    var managerName = [String]()
+    var managerId = [String]()
     let dispatchGroup = DispatchGroup()
     
-    @IBOutlet weak var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        configureTableView()
-        tableView.backgroundColor = UIColor(white: 0.95, alpha: 1)
-        tableView.dataSource = self
         tableView.delegate = self
+        tableView.dataSource = self
         networking()
+        tableView.backgroundColor = UIColor(white: 0.95, alpha: 1)
     }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return plotName.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "adminPlotCell", for: indexPath) as! adminPlotCell
+        cell.backgroundColor = UIColor(white: 0.95, alpha: 1)
+        cell.name.text = "Name: "+plotName[indexPath.row]
+        cell.plotSize.text = "Farmsize: "+farmSize[indexPath.row]
+        cell.descriptions.text = "Description: " + descriptions[indexPath.row]
+        if location.isEmpty == false {
+            cell.location.text = "Location: " + location[indexPath.row]
+        }
+        return cell
+    }
+    
     
     private func networking(){
         //TODO: Networking is done here :
@@ -47,14 +66,13 @@ class adminFarm: UIViewController,UITableViewDelegate,UITableViewDataSource{
             }
         }
     }
-    
     private func dataParsing(json : JSON){
-        for  i in 0...(json["add_f"].count - 1){
-            farmName.append(json["add_f"][i]["farm_n"].string!)
-            farmSize.append(json["add_f"][i]["farm_s"].string!)
-            descriptions.append(json["add_f"][i]["farm_d"].string!)
-            let latitude = json["add_f"][i]["farmla"].string!
-            let longitude = json["add_f"][i]["farmlo"].string!
+        for  i in 0...(json["add_farm"].count - 1){
+            plotName.append(json["add_farm"][i]["farm_name"].string!)
+            farmSize.append(json["add_farm"][i]["farm_size"].string!)
+            descriptions.append(json["add_farm"][i]["farm_disc"].string!)
+            let latitude = json["add_farm"][i]["farmlat"].string!
+            let longitude = json["add_farm"][i]["farmlong"].string!
             self.getAddressFromLatLon(pdblLatitude:latitude , withLongitude: longitude)
         }
         dispatchGroup.notify(queue: .main) {
@@ -63,25 +81,6 @@ class adminFarm: UIViewController,UITableViewDelegate,UITableViewDataSource{
             SVProgressHUD.dismiss()
         }
     }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return farmName.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "auditorFarmCell", for: indexPath) as! adminFarmCell
-        
-        cell.backgroundColor = UIColor(white: 0.95, alpha: 1)
-        cell.name.text = "Name: "+farmName[indexPath.row]
-        cell.farmSize.text = "Farmsize: "+farmSize[indexPath.row]
-        cell.descriptions.text = "Description: " + descriptions[indexPath.row]
-        if location.isEmpty == false {
-            cell.location.text = "Location: " + location[indexPath.row]
-        }
-        return cell
-        
-    }
-    
     private func getAddressFromLatLon(pdblLatitude: String, withLongitude pdblLongitude: String) {
         if ((Double("\(pdblLatitude)") != nil) && (Double("\(pdblLongitude)") != nil)){
             
@@ -132,7 +131,7 @@ class adminFarm: UIViewController,UITableViewDelegate,UITableViewDataSource{
                         print(addressString)
                     }
                     self.dispatchGroup.leave()//TODO: stop's waiting
-
+                    
                     print("inside")
             })
             dispatchGroup.notify(queue: .main) {
@@ -149,11 +148,6 @@ class adminFarm: UIViewController,UITableViewDelegate,UITableViewDataSource{
         }
         
     }
-
-    private func configureTableView(){
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 120.0
-    }
     
     private func showAlertForError(withMessage message : String){
         //TODO: check wether username or password enntered is wrong:
@@ -165,5 +159,4 @@ class adminFarm: UIViewController,UITableViewDelegate,UITableViewDataSource{
         present(alert, animated: true, completion: nil)
         SVProgressHUD.dismiss()
     }
-
 }

@@ -12,6 +12,8 @@
 		6F101FD8222813F80001A081 /* adminFarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F101FD7222813F80001A081 /* adminFarm.swift */; };
 		6F101FDA222830B50001A081 /* adminFarmActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F101FD9222830B50001A081 /* adminFarmActivity.swift */; };
 		6F101FDC222830D90001A081 /* adminFarmActivityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F101FDB222830D90001A081 /* adminFarmActivityCell.swift */; };
+		6F101FDE2229C8020001A081 /* adminPlotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F101FDD2229C8020001A081 /* adminPlotCell.swift */; };
+		6F101FE02229C8610001A081 /* adminPlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F101FDF2229C8610001A081 /* adminPlot.swift */; };
 		6F19AB44220EB2F800253C51 /* Url.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F19AB43220EB2F800253C51 /* Url.swift */; };
 		6F19AB89220F29A500253C51 /* splash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F19AB88220F29A500253C51 /* splash.swift */; };
 		6F20E6DE220CD7E60075A04B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F20E6DD220CD7E60075A04B /* AppDelegate.swift */; };
@@ -34,6 +36,8 @@
 		6F101FD7222813F80001A081 /* adminFarm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = adminFarm.swift; sourceTree = "<group>"; };
 		6F101FD9222830B50001A081 /* adminFarmActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = adminFarmActivity.swift; sourceTree = "<group>"; };
 		6F101FDB222830D90001A081 /* adminFarmActivityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = adminFarmActivityCell.swift; sourceTree = "<group>"; };
+		6F101FDD2229C8020001A081 /* adminPlotCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = adminPlotCell.swift; sourceTree = "<group>"; };
+		6F101FDF2229C8610001A081 /* adminPlot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = adminPlot.swift; sourceTree = "<group>"; };
 		6F19AB43220EB2F800253C51 /* Url.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Url.swift; sourceTree = "<group>"; };
 		6F19AB88220F29A500253C51 /* splash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = splash.swift; sourceTree = "<group>"; };
 		6F20E6DA220CD7E60075A04B /* Farm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Farm.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -146,6 +150,7 @@
 				6F52A2DD222742CF00ED3C82 /* adminAuditorCell.swift */,
 				6F101FD5222813DE0001A081 /* adminFarmCell.swift */,
 				6F101FDB222830D90001A081 /* adminFarmActivityCell.swift */,
+				6F101FDD2229C8020001A081 /* adminPlotCell.swift */,
 			);
 			path = "Custom Cells";
 			sourceTree = "<group>";
@@ -155,8 +160,9 @@
 			children = (
 				6FD32366220E2D490002B695 /* adminManager.swift */,
 				6F52A2E0222744B200ED3C82 /* adminAuditor.swift */,
-				6F101FD7222813F80001A081 /* adminFarm.swift */,
 				6F101FD9222830B50001A081 /* adminFarmActivity.swift */,
+				6F101FD7222813F80001A081 /* adminFarm.swift */,
+				6F101FDF2229C8610001A081 /* adminPlot.swift */,
 			);
 			path = adminClasses;
 			sourceTree = "<group>";
@@ -294,10 +300,12 @@
 				6F19AB89220F29A500253C51 /* splash.swift in Sources */,
 				6FD32367220E2D490002B695 /* adminManager.swift in Sources */,
 				6F101FD6222813DE0001A081 /* adminFarmCell.swift in Sources */,
+				6F101FE02229C8610001A081 /* adminPlot.swift in Sources */,
 				6F101FDC222830D90001A081 /* adminFarmActivityCell.swift in Sources */,
 				6F20E6E6220CD7E60075A04B /* Farm.xcdatamodeld in Sources */,
 				6F101FDA222830B50001A081 /* adminFarmActivity.swift in Sources */,
 				6F19AB44220EB2F800253C51 /* Url.swift in Sources */,
+				6F101FDE2229C8020001A081 /* adminPlotCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
