@@ -20,6 +20,8 @@ class adminManager: UIViewController,UITableViewDataSource,UITableViewDelegate{
     var managerId = [String]()
     var contactNumber = [String]()
     
+    @IBOutlet weak var addButton: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -32,6 +34,13 @@ class adminManager: UIViewController,UITableViewDataSource,UITableViewDelegate{
     override func viewWillAppear(_ animated: Bool) {
         //TODO: removes the back button
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(), style: .plain, target: self, action: nil)
+        self.tabBarController!.tabBar.isHidden = false
+        let type = Int(String(describing: (UserDefaults.standard.value(forKey: "type"))!))!
+        if type == 3 {
+            addButton.tintColor = UIColor(white: 0.95, alpha: 1)
+            addButton.isEnabled = false
+        }
+
     }
 
     @IBAction func logOutButtonclicked(_ sender: UIButton) {
@@ -95,6 +104,13 @@ class adminManager: UIViewController,UITableViewDataSource,UITableViewDelegate{
         alert.addAction(reEnter)
         present(alert, animated: true, completion: nil)
         SVProgressHUD.dismiss()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "createAccount"{
+            let createAccount = segue.destination as! CreateAccount
+            createAccount.type = "2"
+        }
     }
     
 }

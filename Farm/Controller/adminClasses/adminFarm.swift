@@ -14,12 +14,23 @@ import CoreLocation
 
 class adminFarm: UIViewController,UITableViewDelegate,UITableViewDataSource{
     
+    @IBOutlet weak var addButton: UIBarButtonItem!
     var farmName = [String]()
     var farmSize = [String]()
     var descriptions = [String]()
     var location = [String]()
     //TODO: DispatchGroup is used to wait untill the data is fetch back
     let dispatchGroup = DispatchGroup()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.tabBarController!.tabBar.isHidden = false
+        let type = Int(String(describing: (UserDefaults.standard.value(forKey: "type"))!))!
+        if type == 3 {
+            addButton.tintColor = UIColor(white: 0.95, alpha: 1)
+            addButton.isEnabled = false
+        }
+
+    }
     
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {

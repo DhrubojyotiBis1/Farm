@@ -13,8 +13,18 @@ import SwiftyJSON
 
 class adminFarmActivity: UIViewController ,UITableViewDelegate,UITableViewDataSource{
 
+    @IBOutlet weak var addButton: UIBarButtonItem!
     var descriptions = [String]()
     var farmName = [String]()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.tabBarController!.tabBar.isHidden = false
+        let type = Int(String(describing: (UserDefaults.standard.value(forKey: "type"))!))!
+        if type == 3 {
+            addButton.tintColor = UIColor(white: 0.95, alpha: 1)
+            addButton.isEnabled = false
+        }
+    }
     
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
@@ -29,6 +39,9 @@ class adminFarmActivity: UIViewController ,UITableViewDelegate,UITableViewDataSo
         networking()
     }
     
+    @IBAction func addButtonPressed(_ sender: Any) {
+        performSegue(withIdentifier: "goToAddActivity", sender: sender)
+    }
     private func networking(){
         //TODO: Networking is done here :
         SVProgressHUD.show()

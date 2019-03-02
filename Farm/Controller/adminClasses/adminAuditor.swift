@@ -13,12 +13,22 @@ import SwiftyJSON
 
 class adminAuditor: UIViewController,UITableViewDelegate,UITableViewDataSource {
 
+    @IBOutlet weak var addButton: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
     var name = [String]()
     var userName = [String]()
     var email = [String]()
     var managerId = [String]()
     var contactNumber = [String]()
+    override func viewWillAppear(_ animated: Bool) {
+         self.tabBarController!.tabBar.isHidden = false
+        let type = Int(String(describing: (UserDefaults.standard.value(forKey: "type"))!))!
+        if type == 3 {
+            addButton.tintColor = UIColor(white: 0.95, alpha: 1)
+            addButton.isEnabled = false
+        }
+
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -84,6 +94,11 @@ class adminAuditor: UIViewController,UITableViewDelegate,UITableViewDataSource {
         present(alert, animated: true, completion: nil)
         SVProgressHUD.dismiss()
     }
-    
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "createAccount"{
+            let createAccount = segue.destination as! CreateAccount
+            createAccount.type = "3"
+        }
+    }
+
 }

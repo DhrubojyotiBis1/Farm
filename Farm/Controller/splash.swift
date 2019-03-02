@@ -34,7 +34,7 @@ class splash: UIViewController {
                 break
             case 3:
             //TODO: performsegue that takes to the Auditor
-                performSegue(withIdentifier: "goToAuditor", sender: nil)
+                performSegue(withIdentifier: "goToAdmin", sender: nil)
                 break
             default:
                 print("Error")

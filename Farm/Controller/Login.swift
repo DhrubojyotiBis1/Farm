@@ -60,7 +60,7 @@ class Login: UIViewController {
                 goToHome(identifier: "goToManager")
             }else{
                 type = 3
-                goToHome(identifier: "goToAuditor")
+                goToHome(identifier: "goToAdmin")
             }
             saveLoginData(username: userName.text!, password: password.text!, type:type )
         }else{

@@ -14,6 +14,7 @@ import CoreLocation
 
 class adminPlot: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
+    @IBOutlet weak var addButton: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
     var farmName = [String]()
     var farmSize = [String]()
@@ -25,6 +26,16 @@ class adminPlot: UIViewController,UITableViewDelegate,UITableViewDataSource {
     var managerId = [String]()
     let dispatchGroup = DispatchGroup()
     
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.tabBarController!.tabBar.isHidden = false
+        let type = Int(String(describing: (UserDefaults.standard.value(forKey: "type"))!))!
+        if type == 3 {
+            addButton.tintColor = UIColor(white: 0.95, alpha: 1)
+            addButton.isEnabled = false
+        }
+
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

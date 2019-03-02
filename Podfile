@@ -9,5 +9,6 @@ target 'Farm' do
 pod 'Alamofire'
 pod 'SwiftyJSON'
 pod 'SVProgressHUD'
+pod 'Eureka'
 
 end
