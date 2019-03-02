@@ -25,6 +25,7 @@ class adminFarmActivity: UIViewController ,UITableViewDelegate,UITableViewDataSo
         tableView.dataSource = self
         tableView.delegate = self
         tableView.backgroundColor = UIColor(white: 0.95, alpha: 1)
+        tableView.allowsSelection = false
         networking()
     }
     

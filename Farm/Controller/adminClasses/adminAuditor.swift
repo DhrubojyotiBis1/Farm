@@ -26,6 +26,7 @@ class adminAuditor: UIViewController,UITableViewDelegate,UITableViewDataSource {
         tableView.backgroundColor = UIColor(white: 0.95, alpha: 1)
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.allowsSelection = false
         networking()
     }
     private func networking(){

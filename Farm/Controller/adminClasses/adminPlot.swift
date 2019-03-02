@@ -34,6 +34,7 @@ class adminPlot: UIViewController,UITableViewDelegate,UITableViewDataSource {
         tableView.dataSource = self
         networking()
         tableView.backgroundColor = UIColor(white: 0.95, alpha: 1)
+        tableView.allowsSelection = false
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

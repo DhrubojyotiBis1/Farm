@@ -26,6 +26,7 @@ class adminManager: UIViewController,UITableViewDataSource,UITableViewDelegate{
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = UIColor(white: 0.95, alpha: 1)
+        tableView.allowsSelection = false
         networking()
     }
     override func viewWillAppear(_ animated: Bool) {
