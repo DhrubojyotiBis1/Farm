@@ -47,7 +47,7 @@ class Addfarm: UITableViewController {
         //TODO: Networking is done here :
         let url = URL()
         
-        Alamofire.request(url.ADD_FARM_URL,method: .post , parameters : ["id":"999","farm_n" : farmName.text!,"farm_s" : size.text!,"farm_d" : descriptions.text! , "farmla" : latitude[0].text! , "farmlo" : longitude[0].text! ,"farmlo2" : longitude[1].text! , "farmlo3" : longitude[2].text! , "farmlo4":longitude[3].text!, "farmlo5":longitude[4].text!, "farmlo6":longitude[5].text!, "farmlo7":longitude[6].text!, "farmlo8":longitude[7].text!, "farmlo9":longitude[8].text!, "farmlo10":longitude[9].text!, "farmla2" : latitude[1].text!, "farmla3" : latitude[2].text!, "farmla4" : latitude[3].text!, "farmla5" : latitude[4].text!, "farmla6" : latitude[5].text!, "farmla7" : latitude[6].text!, "farmla8" : latitude[7].text!, "farmla9" : latitude[8].text!, "farmla10" : latitude[9].text!]).responseData{ (response) in
+        Alamofire.request(url.ADD_FARM_URL,method: .post , parameters : ["farmname" : farmName.text!,"farmsize" : size.text!,"farmdisc" : descriptions.text! , "farmlat" : latitude[0].text! , "farmlong" : longitude[0].text! ,"farmlong2" : longitude[1].text! , "farmlong3" : longitude[2].text! , "farmlong4":longitude[3].text!, "farmlong5":longitude[4].text!, "farmlong6":longitude[5].text!, "farmlong7":longitude[6].text!, "farmlong8":longitude[7].text!, "farmlong9":longitude[8].text!, "farmlong10":longitude[9].text!, "farmlat2" : latitude[1].text!, "farmlat3" : latitude[2].text!, "farmlat4" : latitude[3].text!, "farmlat5" : latitude[4].text!, "farmlat6" : latitude[5].text!, "farmlat7" : latitude[6].text!, "farmlat8" : latitude[7].text!, "farmlat9" : latitude[8].text!, "farmlat10" : latitude[9].text!]).responseString{ (response) in
             if response.result.isSuccess{
               let userJSON : JSON = JSON(response.result.value!)
                 print(userJSON)
@@ -72,7 +72,7 @@ class Addfarm: UITableViewController {
         let alert = UIAlertController(title: "Thnak You", message: message, preferredStyle: .alert)
         let reEnter = UIAlertAction(title: "Done", style: .default) { (UIAlertAction) in
             SVProgressHUD.dismiss()
-            self.dismiss(animated: true, completion: nil)
+            self.navigationController?.popToRootViewController(animated: true)
         }
         alert.addAction(reEnter)
         present(alert, animated: true, completion: nil)

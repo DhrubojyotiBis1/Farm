@@ -17,6 +17,9 @@
 		6F101FE22229ECEF0001A081 /* CreateAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F101FE12229ECEF0001A081 /* CreateAccount.swift */; };
 		6F14EE1C222B16140001841A /* AddPlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F14EE1B222B16140001841A /* AddPlot.swift */; };
 		6F14EE1E222B181B0001841A /* AddActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F14EE1D222B181B0001841A /* AddActivity.swift */; };
+		6F14EE20222B4B190001841A /* adminItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F14EE1F222B4B190001841A /* adminItemType.swift */; };
+		6F14EE22222BCA370001841A /* adminItemTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F14EE21222BCA370001841A /* adminItemTypeCell.swift */; };
+		6F14EE24222BD9E80001841A /* AddItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F14EE23222BD9E80001841A /* AddItems.swift */; };
 		6F19AB44220EB2F800253C51 /* Url.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F19AB43220EB2F800253C51 /* Url.swift */; };
 		6F19AB89220F29A500253C51 /* splash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F19AB88220F29A500253C51 /* splash.swift */; };
 		6F20E6DE220CD7E60075A04B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F20E6DD220CD7E60075A04B /* AppDelegate.swift */; };
@@ -25,6 +28,9 @@
 		6F20E6E6220CD7E60075A04B /* Farm.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6F20E6E4220CD7E60075A04B /* Farm.xcdatamodeld */; };
 		6F20E6E8220CD7E90075A04B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F20E6E7220CD7E90075A04B /* Assets.xcassets */; };
 		6F20E6EB220CD7E90075A04B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F20E6E9220CD7E90075A04B /* LaunchScreen.storyboard */; };
+		6F23A8F8222C14DA0072AF24 /* adminDailyExpenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F23A8F7222C14DA0072AF24 /* adminDailyExpenses.swift */; };
+		6F23A8FA222C15D40072AF24 /* adminDailyExpensesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F23A8F9222C15D40072AF24 /* adminDailyExpensesCell.swift */; };
+		6F23A8FC222C2CB10072AF24 /* AdminChangePassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F23A8FB222C2CB10072AF24 /* AdminChangePassword.swift */; };
 		6F52A2B52225BAAB00ED3C82 /* adminManagerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F52A2B42225BAAB00ED3C82 /* adminManagerCell.swift */; };
 		6F52A2DE222742CF00ED3C82 /* adminAuditorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F52A2DD222742CF00ED3C82 /* adminAuditorCell.swift */; };
 		6F52A2E1222744B200ED3C82 /* adminAuditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F52A2E0222744B200ED3C82 /* adminAuditor.swift */; };
@@ -45,6 +51,9 @@
 		6F101FE12229ECEF0001A081 /* CreateAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccount.swift; sourceTree = "<group>"; };
 		6F14EE1B222B16140001841A /* AddPlot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlot.swift; sourceTree = "<group>"; };
 		6F14EE1D222B181B0001841A /* AddActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddActivity.swift; sourceTree = "<group>"; };
+		6F14EE1F222B4B190001841A /* adminItemType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = adminItemType.swift; sourceTree = "<group>"; };
+		6F14EE21222BCA370001841A /* adminItemTypeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = adminItemTypeCell.swift; sourceTree = "<group>"; };
+		6F14EE23222BD9E80001841A /* AddItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItems.swift; sourceTree = "<group>"; };
 		6F19AB43220EB2F800253C51 /* Url.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Url.swift; sourceTree = "<group>"; };
 		6F19AB88220F29A500253C51 /* splash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = splash.swift; sourceTree = "<group>"; };
 		6F20E6DA220CD7E60075A04B /* Farm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Farm.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -55,6 +64,9 @@
 		6F20E6E7220CD7E90075A04B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6F20E6EA220CD7E90075A04B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6F20E6EC220CD7E90075A04B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6F23A8F7222C14DA0072AF24 /* adminDailyExpenses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = adminDailyExpenses.swift; sourceTree = "<group>"; };
+		6F23A8F9222C15D40072AF24 /* adminDailyExpensesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = adminDailyExpensesCell.swift; sourceTree = "<group>"; };
+		6F23A8FB222C2CB10072AF24 /* AdminChangePassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminChangePassword.swift; sourceTree = "<group>"; };
 		6F52A2B42225BAAB00ED3C82 /* adminManagerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = adminManagerCell.swift; sourceTree = "<group>"; };
 		6F52A2DD222742CF00ED3C82 /* adminAuditorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = adminAuditorCell.swift; sourceTree = "<group>"; };
 		6F52A2E0222744B200ED3C82 /* adminAuditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = adminAuditor.swift; sourceTree = "<group>"; };
@@ -159,6 +171,8 @@
 				6F101FD5222813DE0001A081 /* adminFarmCell.swift */,
 				6F101FDB222830D90001A081 /* adminFarmActivityCell.swift */,
 				6F101FDD2229C8020001A081 /* adminPlotCell.swift */,
+				6F14EE21222BCA370001841A /* adminItemTypeCell.swift */,
+				6F23A8F9222C15D40072AF24 /* adminDailyExpensesCell.swift */,
 			);
 			path = "Custom Cells";
 			sourceTree = "<group>";
@@ -175,6 +189,10 @@
 				6F8358B9222AE30C00A0FC85 /* Addfarm.swift */,
 				6F14EE1B222B16140001841A /* AddPlot.swift */,
 				6F14EE1D222B181B0001841A /* AddActivity.swift */,
+				6F14EE1F222B4B190001841A /* adminItemType.swift */,
+				6F14EE23222BD9E80001841A /* AddItems.swift */,
+				6F23A8F7222C14DA0072AF24 /* adminDailyExpenses.swift */,
+				6F23A8FB222C2CB10072AF24 /* AdminChangePassword.swift */,
 			);
 			path = adminClasses;
 			sourceTree = "<group>";
@@ -280,7 +298,6 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Farm/Pods-Farm-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
@@ -289,7 +306,6 @@
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
@@ -307,8 +323,11 @@
 			files = (
 				6F8358BA222AE30C00A0FC85 /* Addfarm.swift in Sources */,
 				6F52A2E1222744B200ED3C82 /* adminAuditor.swift in Sources */,
+				6F23A8FC222C2CB10072AF24 /* AdminChangePassword.swift in Sources */,
 				6F52A2B52225BAAB00ED3C82 /* adminManagerCell.swift in Sources */,
 				6F101FD8222813F80001A081 /* adminFarm.swift in Sources */,
+				6F14EE24222BD9E80001841A /* AddItems.swift in Sources */,
+				6F14EE22222BCA370001841A /* adminItemTypeCell.swift in Sources */,
 				6F20E6E0220CD7E60075A04B /* Login.swift in Sources */,
 				6F52A2DE222742CF00ED3C82 /* adminAuditorCell.swift in Sources */,
 				6F20E6DE220CD7E60075A04B /* AppDelegate.swift in Sources */,
@@ -317,12 +336,15 @@
 				6F101FD6222813DE0001A081 /* adminFarmCell.swift in Sources */,
 				6F14EE1C222B16140001841A /* AddPlot.swift in Sources */,
 				6F14EE1E222B181B0001841A /* AddActivity.swift in Sources */,
+				6F14EE20222B4B190001841A /* adminItemType.swift in Sources */,
 				6F101FE02229C8610001A081 /* adminPlot.swift in Sources */,
 				6F101FDC222830D90001A081 /* adminFarmActivityCell.swift in Sources */,
 				6F20E6E6220CD7E60075A04B /* Farm.xcdatamodeld in Sources */,
 				6F101FDA222830B50001A081 /* adminFarmActivity.swift in Sources */,
+				6F23A8F8222C14DA0072AF24 /* adminDailyExpenses.swift in Sources */,
 				6F19AB44220EB2F800253C51 /* Url.swift in Sources */,
 				6F101FDE2229C8020001A081 /* adminPlotCell.swift in Sources */,
+				6F23A8FA222C15D40072AF24 /* adminDailyExpensesCell.swift in Sources */,
 				6F101FE22229ECEF0001A081 /* CreateAccount.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

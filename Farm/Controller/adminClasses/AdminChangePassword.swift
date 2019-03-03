@@ -1,5 +1,5 @@
 //
-//  AddActivity.swift
+//  AminChangePassword.swift
 //  Farm
 //
 //  Created by Dhrubojyoti on 03/03/19.
@@ -7,29 +7,30 @@
 //
 
 import UIKit
-import SVProgressHUD
 import Alamofire
-import SwiftyJSON
+import SVProgressHUD
 
-class AddActivity: UIViewController {
-
-    @IBOutlet weak var descriptions: UITextField!
-    @IBOutlet weak var activityName: UITextField!
+class AdminChangePassword: UIViewController {
+    
+    @IBOutlet weak var newPassword: UITextField!
+    @IBOutlet weak var oldPassword: UITextField!
+    @IBOutlet weak var confirmPassword: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
     
+    
     @IBAction func doneButtonClicked(_ sender: Any) {
-        
         SVProgressHUD.show()
-        if descriptions.text! == "" || activityName.text! == ""{
-            print("error")
-            if descriptions.text! == ""{
-                showAlertForError(withMessage: "Description is empty")
+        if newPassword.text! == "" || oldPassword.text! == "" || confirmPassword.text! == "" {
+            if newPassword.text! == ""{
+                showSuccess(withMessage: "Enter new password")
+            }else if confirmPassword.text! == "" {
+                showAlertForError(withMessage: "Enter confirm password")
             }else{
-                showAlertForError(withMessage: "Activity name is empty")
+                showAlertForError(withMessage: "Enter old password")
             }
         }else{
             networking()
@@ -38,19 +39,20 @@ class AddActivity: UIViewController {
     
     private func networking(){
         //TODO: Networking is done here :
-        let url = URL()
-        Alamofire.request(url.ADD_FARM_ACTIVITY_URL, method: .post, parameters: ["actname" : activityName.text!,"actdisc" : descriptions.text!]).responseString{
-                response in
-                print(response)
-                if response.result.isSuccess{
-                    print(response.result.value!)
-                    self.showSuccess(withMessage: "New activity is added")
-                }else{
-                    print("Error")
-                    self.showAlertForError(withMessage: "Check your internet connection")
-                }
-        }
+//        let url = URL()
+//        Alamofire.request(url., method: .post, parameters: ["chanpass": oldPassword.text!,"curpass":newPassword.text!,"concurpass":confirmPassword.text!]).responseString{
+//            response in
+//            print(response)
+//            if response.result.isSuccess{
+//                print(response.result.value!)
+//                self.showSuccess(withMessage: "New activity is added")
+//            }else{
+//                print("Error")
+//                self.showAlertForError(withMessage: "Check your internet connection")
+//            }
+//        }
     }
+    
     
     private func showAlertForError(withMessage message : String){
         //TODO: check wether username or password enntered is wrong:
@@ -65,11 +67,10 @@ class AddActivity: UIViewController {
         let alert = UIAlertController(title: "Thnak You", message: message, preferredStyle: .alert)
         let reEnter = UIAlertAction(title: "Done", style: .default) { (UIAlertAction) in
             SVProgressHUD.dismiss()
-            self.navigationController?.popViewController(animated: true)
+            self.navigationController?.popToRootViewController(animated: true)
         }
         alert.addAction(reEnter)
         present(alert, animated: true, completion: nil)
     }
     
-
 }

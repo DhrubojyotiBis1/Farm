@@ -67,15 +67,16 @@ class CreateAccount: UITableViewController {
         print(managerId)
         print(password)
         print(type)
-//        Alamofire.request(url.CREATE_ACCOUNT_URL ,method: .put , parameters : ["email": email,"password" : password ,"type" : self.type , "username" : userName , "phone" : phoneNumber , "id" : managerId, "client_num" : "1" , "name" : name]).responseData { (response) in
-//            print(response)
-//            if response.result.isSuccess{
-//                self.showSuccess(withMessage: "New Account has been created")
-//            }else{
-//                print("Error")
-//                self.showAlertForError(withMessage: "Check your internet connection")
-//            }
-//        }
+        let parameter : Parameters = ["email": email,"password" : password ,"ustype" : self.type , "username" : userName , "number" : phoneNumber ,  "client_num" : managerId, "name" : name]
+        Alamofire.request(url.CREATE_ACCOUNT_URL ,method: .post , parameters : parameter).responseString{ (response) in
+            print(response)
+            if response.result.isSuccess{
+                self.showSuccess(withMessage: "New Account has been created")
+            }else{
+                print("Error")
+                self.showAlertForError(withMessage: "Check your internet connection")
+            }
+        }
         
 
         
@@ -85,7 +86,7 @@ class CreateAccount: UITableViewController {
         let alert = UIAlertController(title: "Thnak You", message: message, preferredStyle: .alert)
         let reEnter = UIAlertAction(title: "Done", style: .default) { (UIAlertAction) in
             SVProgressHUD.dismiss()
-            self.dismiss(animated: true, completion: nil)
+            self.navigationController?.popToRootViewController(animated: true)
         }
         alert.addAction(reEnter)
         present(alert, animated: true, completion: nil)

@@ -1,5 +1,5 @@
 //
-//  AddActivity.swift
+//  AddItems.swift
 //  Farm
 //
 //  Created by Dhrubojyoti on 03/03/19.
@@ -9,48 +9,50 @@
 import UIKit
 import SVProgressHUD
 import Alamofire
-import SwiftyJSON
 
-class AddActivity: UIViewController {
+class AddItems: UIViewController {
 
-    @IBOutlet weak var descriptions: UITextField!
-    @IBOutlet weak var activityName: UITextField!
+    @IBOutlet weak var itemManufacturer: UITextField!
+    @IBOutlet weak var itemDescription: UITextField!
+    @IBOutlet weak var itemName: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-    
-    @IBAction func doneButtonClicked(_ sender: Any) {
-        
+
+    @IBAction func doneButtonPressed(_ sender: Any) {
         SVProgressHUD.show()
-        if descriptions.text! == "" || activityName.text! == ""{
-            print("error")
-            if descriptions.text! == ""{
-                showAlertForError(withMessage: "Description is empty")
+        if itemName.text! == "" || itemDescription.text! == "" || itemManufacturer.text! == "" {
+            if itemManufacturer.text! == ""{
+                showAlertForError(withMessage: "No manufacturer entered")
+            }else if itemDescription.text! == "" {
+                showAlertForError(withMessage: "No description entered")
             }else{
-                showAlertForError(withMessage: "Activity name is empty")
+                showAlertForError(withMessage: "No name entered")
             }
         }else{
             networking()
         }
+        
     }
     
+    
     private func networking(){
-        //TODO: Networking is done here :
+        //TODO: Networking here:
         let url = URL()
-        Alamofire.request(url.ADD_FARM_ACTIVITY_URL, method: .post, parameters: ["actname" : activityName.text!,"actdisc" : descriptions.text!]).responseString{
-                response in
-                print(response)
-                if response.result.isSuccess{
-                    print(response.result.value!)
-                    self.showSuccess(withMessage: "New activity is added")
-                }else{
-                    print("Error")
-                    self.showAlertForError(withMessage: "Check your internet connection")
-                }
+        Alamofire.request(url.ADD_ITEM_TYPE_URL,method: .post,parameters:["itemname":itemName.text! ,"itemdisc":itemDescription.text!,"itemman":itemManufacturer.text!]).responseString{responce in
+            print(responce)
+            if responce.result.isSuccess{
+                self.showSuccess(withMessage: "New Account has been created")
+            }else{
+                print("Error")
+                self.showAlertForError(withMessage: "Check your internet connection!")
+            }
+            
         }
     }
+    
     
     private func showAlertForError(withMessage message : String){
         //TODO: check wether username or password enntered is wrong:
@@ -70,6 +72,4 @@ class AddActivity: UIViewController {
         alert.addAction(reEnter)
         present(alert, animated: true, completion: nil)
     }
-    
-
 }

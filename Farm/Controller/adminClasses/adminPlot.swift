@@ -72,7 +72,7 @@ class adminPlot: UIViewController,UITableViewDelegate,UITableViewDataSource {
     }
     
     @IBAction func addButtonPressed(_ sender: Any) {
-        performSegue(withIdentifier: "add", sender: sender)
+        performSegue(withIdentifier: "goToPlot", sender: sender)
     }
     
     private func networking(){
