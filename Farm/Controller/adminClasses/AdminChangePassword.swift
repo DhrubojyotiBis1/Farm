@@ -38,19 +38,21 @@ class AdminChangePassword: UIViewController {
     }
     
     private func networking(){
-        //TODO: Networking is done here :
-//        let url = URL()
-//        Alamofire.request(url., method: .post, parameters: ["chanpass": oldPassword.text!,"curpass":newPassword.text!,"concurpass":confirmPassword.text!]).responseString{
-//            response in
-//            print(response)
-//            if response.result.isSuccess{
-//                print(response.result.value!)
-//                self.showSuccess(withMessage: "New activity is added")
-//            }else{
-//                print("Error")
-//                self.showAlertForError(withMessage: "Check your internet connection")
-//            }
-//        }
+        //TODO: Networking is done here : user_id
+        let id = String(describing: (UserDefaults.standard.value(forKey: "id"))!)
+        let url = URL()
+        print(id)
+        Alamofire.request(url.CHANGE_PASSWORD, method: .post, parameters: ["chanpass": oldPassword.text!,"curpass":newPassword.text!,"concurpass":confirmPassword.text!,"user_id":id]).responseString{
+            response in
+            print(response)
+            if response.result.isSuccess{
+                print(response.result.value!)
+                self.showSuccess(withMessage: "New activity is added")
+            }else{
+                print("Error")
+                self.showAlertForError(withMessage: "Check your internet connection")
+            }
+        }
     }
     
     

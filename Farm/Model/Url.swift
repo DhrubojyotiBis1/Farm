@@ -19,5 +19,6 @@ class URL {
     let ADD_PLOT_URL = "http://axxentfarms.com/farm/files/pages/app/addfarm.php"
     let ADD_DAILY_EXPENSE = "http://axxentfarms.com/farm/files/pages/app/recordexp.php"
     let ADD_DAILY_ACTIVITY = "http://axxentfarms.com/farm/files/pages/app/recordact.php"
+    let CHANGE_PASSWORD = "http://axxentfarms.com/farm/files/pages/app/Changepassword.php"
 }
 

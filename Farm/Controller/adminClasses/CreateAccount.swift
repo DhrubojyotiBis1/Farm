@@ -22,6 +22,8 @@ class CreateAccount: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("Client Account Created        " == "Client Account Created")
 
         // Do any additional setup after loading the view.
        self.tabBarController!.tabBar.isHidden = true
@@ -69,9 +71,15 @@ class CreateAccount: UITableViewController {
         print(type)
         let parameter : Parameters = ["email": email,"password" : password ,"ustype" : self.type , "username" : userName , "number" : phoneNumber ,  "client_num" : managerId, "name" : name]
         Alamofire.request(url.CREATE_ACCOUNT_URL ,method: .post , parameters : parameter).responseString{ (response) in
-            print(response)
             if response.result.isSuccess{
-                self.showSuccess(withMessage: "New Account has been created")
+                if response.result.value!.count == 26{
+                    self.showSuccess(withMessage: "New Account has been created")
+                }else if response.result.value!.count == 24{
+                    self.showAlertForError(withMessage:"Email already exist")
+                }else{
+                    self.showAlertForError(withMessage: "Username already exist")
+                }
+                
             }else{
                 print("Error")
                 self.showAlertForError(withMessage: "Check your internet connection")

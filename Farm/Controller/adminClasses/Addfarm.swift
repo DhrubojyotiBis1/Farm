@@ -26,6 +26,7 @@ class Addfarm: UITableViewController {
     }
     
     @IBAction func doneButtonPressed(_ sender: Any) {
+        SVProgressHUD.show()
         if farmName.text! == "" || descriptions.text! == "" || size.text! == "" || longitude[0].text! == "" || latitude[0].text! == ""{
             if farmName.text! == "" {
                 showAlertForError(withMessage: "Farm name is empty")

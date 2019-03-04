@@ -51,6 +51,7 @@ class Login: UIViewController {
         if(json["login_status"]==1){
             print(json)
             SVProgressHUD.dismiss()
+            
             var type = 0
             if(json["type"] == "1"){
                 type = 1
@@ -62,7 +63,7 @@ class Login: UIViewController {
                 type = 3
                 goToHome(identifier: "goToAdmin")
             }
-            saveLoginData(username: userName.text!, password: password.text!, type:type )
+            saveLoginData(username: userName.text!, password: password.text!, type:type , id: json["id"].string! )
         }else{
            showAlertForError(withMessage: "Invalid username or password")
         }
@@ -73,11 +74,12 @@ class Login: UIViewController {
         //TODO: takes the user to home page:
         performSegue(withIdentifier: identifier, sender: nil)
     }
-    private func saveLoginData(username: String,password:String,type: Int){
+    private func saveLoginData(username: String,password:String,type: Int, id: String){
         //TODO: saves the login data User defoult i.e in a small database:
         UserDefaults.standard.set(username, forKey: "username")
         UserDefaults.standard.set(password, forKey: "password")
         UserDefaults.standard.set(type, forKey: "type")
+        UserDefaults.standard.set(id, forKey: "id")
         
     }
     
