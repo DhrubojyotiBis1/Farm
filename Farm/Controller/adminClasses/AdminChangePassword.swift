@@ -19,6 +19,7 @@ class AdminChangePassword: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        SVProgressHUD.dismiss()
     }
     
     
@@ -33,7 +34,11 @@ class AdminChangePassword: UIViewController {
                 showAlertForError(withMessage: "Enter old password")
             }
         }else{
-            networking()
+            if newPassword.text! == confirmPassword.text!{
+                networking()
+            }else{
+                showAlertForError(withMessage: "New password and confirm password does not match!")
+            }
         }
     }
     
@@ -44,10 +49,14 @@ class AdminChangePassword: UIViewController {
         print(id)
         Alamofire.request(url.CHANGE_PASSWORD, method: .post, parameters: ["chanpass": oldPassword.text!,"curpass":newPassword.text!,"concurpass":confirmPassword.text!,"user_id":id]).responseString{
             response in
-            print(response)
+            print(response.result.value!.count)
+            print(response.result.value!)
             if response.result.isSuccess{
-                print(response.result.value!)
-                self.showSuccess(withMessage: "New activity is added")
+                if response.result.value!.count == 90{
+                    self.showSuccess(withMessage: "Password has benn changed")
+                }else{
+                    self.showAlertForError(withMessage: "You Entered your old password Incorrectly!")
+                }
             }else{
                 print("Error")
                 self.showAlertForError(withMessage: "Check your internet connection")
@@ -69,6 +78,9 @@ class AdminChangePassword: UIViewController {
         let alert = UIAlertController(title: "Thnak You", message: message, preferredStyle: .alert)
         let reEnter = UIAlertAction(title: "Done", style: .default) { (UIAlertAction) in
             SVProgressHUD.dismiss()
+            self.confirmPassword.text! = ""
+            self.newPassword.text! = ""
+            self.oldPassword.text! = ""
             self.navigationController?.popToRootViewController(animated: true)
         }
         alert.addAction(reEnter)
