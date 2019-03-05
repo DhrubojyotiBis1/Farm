@@ -14,6 +14,7 @@ import SwiftyJSON
 
 class adminDailyExpenses: UIViewController,UITableViewDelegate,UITableViewDataSource {
 
+    @IBOutlet weak var addButton: UIBarButtonItem!
     @IBOutlet var tableView: UITableView!
     var purpose = [String]()
     var unit = [String]()
@@ -31,6 +32,11 @@ class adminDailyExpenses: UIViewController,UITableViewDelegate,UITableViewDataSo
         tableView.backgroundColor = UIColor(white: 0.95, alpha: 1)
         tableView.allowsSelection = false
         networking()
+        let type = Int(String(describing: (UserDefaults.standard.value(forKey: "type"))!))!
+        if type == 3 || type == 1 {
+            addButton.tintColor = UIColor(white: 0.95, alpha: 1)
+            addButton.isEnabled = false
+        }
 
         
     }
@@ -78,6 +84,15 @@ class adminDailyExpenses: UIViewController,UITableViewDelegate,UITableViewDataSo
         cell.backgroundColor = UIColor(white: 0.95, alpha: 1)
         return cell
     }
+    
+    
+    
+    
+    
+    @IBAction func addButtonPressed(_ sender: Any) {
+        performSegue(withIdentifier: "goToAddExpenses", sender: nil)
+    }
+    
     private func showAlertForError(withMessage message : String){
         //TODO: check wether username or password enntered is wrong:
         let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
