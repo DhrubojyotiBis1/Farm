@@ -58,5 +58,8 @@ class ManagerDailyActivityCell: UITableViewCell {
         view.layer.shadowColor = UIColor.gray.cgColor
         view.layer.shadowOffset = CGSize(width: 0, height: 3)
         view.layer.shadowOpacity = 0.8
+        viewImage.layer.cornerRadius = 10
+        viewDocument.layer.cornerRadius = 10
+        watchVideo.layer.cornerRadius = 10
     }
 }

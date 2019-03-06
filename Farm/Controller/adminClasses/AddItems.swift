@@ -40,7 +40,7 @@ class AddItems: UIViewController {
     
     private func networking(){
         //TODO: Networking here:
-        let url = URL()
+        let url = Url()
         Alamofire.request(url.ADD_ITEM_TYPE_URL,method: .post,parameters:["itemname":itemName.text! ,"itemdisc":itemDescription.text!,"itemman":itemManufacturer.text!]).responseString{responce in
             print(responce)
             if responce.result.isSuccess{

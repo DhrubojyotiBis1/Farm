@@ -81,7 +81,7 @@ class andminSelectManager: UIViewController,UITableViewDelegate,UITableViewDataS
     private func networking(){
         //TODO: Networking is done here :
         SVProgressHUD.show()
-        let url = URL()
+        let url = Url()
         Alamofire.request(url.dataUrl).responseJSON { (response) in
             if response.result.isSuccess{
                 let userjson:JSON = JSON(response.result.value!)

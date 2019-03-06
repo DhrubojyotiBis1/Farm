@@ -8,7 +8,7 @@
 
 import Foundation
 
-class URL {
+class Url {
     let loginUrl="http://axxentfarms.com/farm/files/pages/app/login.php?"
     let dataUrl = "http://axxentfarms.com/farm/files/pages/app/fetchtable.php"
     let CREATE_ACCOUNT_URL = "http://axxentfarms.com/farm/files/pages/app/createaccount.php"
@@ -20,5 +20,6 @@ class URL {
     let ADD_DAILY_EXPENSE = "http://axxentfarms.com/farm/files/pages/app/recordexp.php"
     let ADD_DAILY_ACTIVITY = "http://axxentfarms.com/farm/files/pages/app/recordact.php"
     let CHANGE_PASSWORD = "http://axxentfarms.com/farm/files/pages/app/changepassword.php"
+    let DOWNLOAD_URL = "http://axxentfarms.com/farm/files/pages/examples2/uploads/"
 }
 

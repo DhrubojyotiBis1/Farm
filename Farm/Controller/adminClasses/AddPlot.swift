@@ -110,7 +110,7 @@ class AddPlot: UITableViewController,selectedData {
     }
     private func networking(){
         //TODO: Networking is done here :
-        let url = URL()
+        let url = Url()
         Alamofire.request(url.ADD_PLOT_URL, method: .post, parameters: ["loan_t":selectedFarmId,"loan_type":selectedManagerId,"farmdisc":descriptions.text!,"latone":firstCoordinate[0].text!,"longone":firstCoordinate[1].text!,"lattwo":secondCoordinate[0].text!,"longtwo":secondCoordinate[1].text!,"latthree":thirdCoordinate[0].text!,"longthree":thirdCoordinate[1].text!,"latfour":fourthCoordinate[0].text!,"longfour":fourthCoordinate[1].text!,"farmname":plotName.text!,"farmsize":size.text!]).responseString{
             response in
             if response.result.value!.count == 23{

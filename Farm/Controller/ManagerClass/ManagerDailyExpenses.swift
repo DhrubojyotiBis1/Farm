@@ -62,7 +62,7 @@ class ManagerDailyExpenses: UITableViewController,ManagerPlotSelected {
     
     private func networking(){
         //TODO: Networking is done here :
-        let url = URL()
+        let url = Url()
         Alamofire.request(url.ADD_DAILY_EXPENSE, method: .post, parameters: ["purpose": purposes.text! , "sname" : supplierName.text!,"description" : descriptions.text!,"unit" : unit.text!, "uprice":unitPrice.text!,"total":totalAmount.text!,"loan_type":plotId]).responseString{
             response in
             if response.result.value!.count == 33{

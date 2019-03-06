@@ -61,7 +61,7 @@ class CreateAccount: UITableViewController {
     
     private func networking(userName : String , andPassword password :String,email : String , managerId : String ,name : String,phoneNumber : String){
         //TODO: Networking is done here :
-        let url = URL()
+        let url = Url()
         print(userName)
         print(name)
         print(email)

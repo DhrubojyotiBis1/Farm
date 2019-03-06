@@ -45,7 +45,7 @@ class AdminChangePassword: UIViewController {
     private func networking(){
         //TODO: Networking is done here : user_id
         let id = String(describing: (UserDefaults.standard.value(forKey: "id"))!)
-        let url = URL()
+        let url = Url()
         print(id)
         Alamofire.request(url.CHANGE_PASSWORD, method: .post, parameters: ["chanpass": oldPassword.text!,"curpass":newPassword.text!,"concurpass":confirmPassword.text!,"user_id":id]).responseString{
             response in

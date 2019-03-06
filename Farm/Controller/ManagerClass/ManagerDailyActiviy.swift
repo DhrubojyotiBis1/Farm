@@ -14,24 +14,50 @@ import SwiftyJSON
 class ManagerDailyActiviy: UIViewController,UITableViewDelegate,UITableViewDataSource,cellDelegate {
 
     func didClickedViewButton(cell: UITableViewCell) {
+        totalImageUrl.removeAll()
+        tatalImagesName.removeAll()
+        flag = 1
+//        documentName.removeAll()
+//        videoName.removeAll()
+//        comment.removeAll()
+//        details.removeAll()
+//        areaCovered.removeAll()
         indexPathOfViewImage = (tableView.indexPath(for: cell)?.row)!
-        print(indexPathOfViewImage)
+        networking()
+        SVProgressHUD.show()
+        
     }
+    override func viewDidAppear(_ animated: Bool) {
+        self.tabBarController!.tabBar.isHidden = false
+    }
+
     
     func didClickedWatchButtonButton(cell: UITableViewCell) {
-        indexPathOfWatchVideo = (tableView.indexPath(for: cell)?.row)!
-        print(indexPathOfWatchVideo)
+        let url = Url()
+        let downloadURL = url.DOWNLOAD_URL + videoName[(tableView.indexPath(for: cell)?.row)!]
+        let downloadCompleteURL = downloadURL.replacingOccurrences(of: " ", with: "%20")
+        filePath = downloadCompleteURL
+        downloadFile(url: downloadCompleteURL, name: "video\((tableView.indexPath(for: cell)?.row)!).mp4")
+        SVProgressHUD.show()
+        self.performSegue(withIdentifier: "goToWebView", sender: nil)  
     }
     
     func didClickedViewDocumentButton(cell: UITableViewCell) {
-        indexPathOfViewDocument = (tableView.indexPath(for: cell)?.row)!
-        print(indexPathOfViewDocument)
+        let url = Url()
+        let downloadURL = url.DOWNLOAD_URL + documentName[(tableView.indexPath(for: cell)?.row)!]
+        let downloadCompleteURL = downloadURL.replacingOccurrences(of: " ", with: "%20")
+        filePath = downloadCompleteURL
+        downloadFile(url: downloadCompleteURL, name: "document\((tableView.indexPath(for: cell)?.row)!).pdf")
+        SVProgressHUD.show()
+        self.performSegue(withIdentifier: "goToWebView", sender: nil)
     }
-    var indexPathOfViewDocument = 0
-    var indexPathOfViewImage = 0
-    var indexPathOfWatchVideo = 0
+    
+    var flag = 0
+    var filePath = ""
+    var indexPathOfViewImage:Int?
+    var tatalImagesName = [String]()
+    var tatalImagesId = [String]()
     @IBOutlet weak var tableView: UITableView!
-    var imageName = [String]()
     var documentName = [String]()
     var videoName = [String]()
     var details = [String]()
@@ -39,6 +65,8 @@ class ManagerDailyActiviy: UIViewController,UITableViewDelegate,UITableViewDataS
     var areaCovered = [String]()
     var activityName = [String]()
     var plotName = [String]()
+    var totalImageUrl = [String]()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,7 +75,9 @@ class ManagerDailyActiviy: UIViewController,UITableViewDelegate,UITableViewDataS
         
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.allowsSelection = false
         networking()
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -68,7 +98,7 @@ class ManagerDailyActiviy: UIViewController,UITableViewDelegate,UITableViewDataS
     private func networking(){
         //TODO: Networking is done here :
         SVProgressHUD.show()
-        let url = URL()
+        let url = Url()
         Alamofire.request(url.dataUrl).responseJSON { (response) in
             if response.result.isSuccess{
                 let userjson:JSON = JSON(response.result.value!)
@@ -83,9 +113,10 @@ class ManagerDailyActiviy: UIViewController,UITableViewDelegate,UITableViewDataS
     private func dataParsing(json : JSON){
         var plotId = [String]()
         var activityId = [String]()
+        var imageId = [String]()
         for  i in 0...(json["dailyactivity"].count - 1){
-            imageName.append(json["dailyactivity"][i]["imgname"].string!)
-            documentName.append(json["dailyactivity"][i]["imgname"].string!)
+            imageId.append(json["dailyactivity"][i]["dactivity_id"].string!)
+            documentName.append(json["dailyactivity"][i]["docname"].string!)
             videoName.append(json["dailyactivity"][i]["vidname"].string!)
             comment.append(json["dailyactivity"][i]["cmts"].string!)
             activityId.append(json["dailyactivity"][i]["actid"].string!)
@@ -94,9 +125,12 @@ class ManagerDailyActiviy: UIViewController,UITableViewDelegate,UITableViewDataS
             areaCovered.append(json["dailyactivity"][i]["hect"].string!)
         }
         getPlotNameAndActivityName(withPlotId: plotId, andActivityId: activityId, json: json)
+        getTotalImages(json: json, totalId: imageId)
         print(plotName.count)
-        self.tableView.reloadData()
-        SVProgressHUD.dismiss()
+        if flag == 0{
+            self.tableView.reloadData()
+            SVProgressHUD.dismiss()
+        }
     }
     
     private func getPlotNameAndActivityName(withPlotId:[String],andActivityId:[String],json:JSON){
@@ -130,6 +164,81 @@ class ManagerDailyActiviy: UIViewController,UITableViewDelegate,UITableViewDataS
         present(alert, animated: true, completion: nil)
         SVProgressHUD.dismiss()
     }
-
+    
+    private func getTotalImages(json: JSON,totalId: [String]){
+        
+            for j in 0..<json["imgdoc"].count{
+                if indexPathOfViewImage != nil{
+                    if totalId[indexPathOfViewImage!] == json["imgdoc"][j]["fileid"].string!{
+                        print(totalId[indexPathOfViewImage!])
+                        tatalImagesName.append(json["imgdoc"][j]["image_original"].string!)
+                        tatalImagesId.append(json["imgdoc"][j]["id"].string!)
+                    }
+                }
+            }
+        
+        print(tatalImagesId)
+        getUrl(totalImageId: tatalImagesId, Json: json)
+    }
+    
+    
+    private func getUrl(totalImageId: [String],Json: JSON){
+        let url = Url()
+        for i in 0..<tatalImagesId.count {
+            for j in 0..<Json["imgdoc"].count{
+                if tatalImagesId[i] == Json["imgdoc"][j]["id"].string! {
+                    print(tatalImagesId[i])
+                    let downloadURL = url.DOWNLOAD_URL + Json["imgdoc"][j]["file"].string!
+                    let downloadCompleteURL = downloadURL.replacingOccurrences(of: " ", with: "%20")
+                    totalImageUrl.append(downloadCompleteURL)
+                }
+            }
+        }
+        
+        print(totalImageUrl)
+        if totalImageUrl.count != 0{
+            performSegue(withIdentifier: "goToSelectImage", sender: nil)
+        }
+        
+    }
+    
+    func downloadFile(url:String,name:String){
+        
+//        let destination: DownloadRequest.DownloadFileDestination = { _, _ in
+//            var documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+//            documentsURL.appendPathComponent(name)
+//            return (documentsURL, [.removePreviousFile])
+//        }
+//
+//        print(url)
+//        Alamofire.download(url, to: destination).responseData { response in
+//
+//            if response.result.isSuccess{
+//                if let filePath = response.destinationURL?.path
+//                {
+//                    print(filePath)
+//                    self.filePath = filePath
+//                    self.performSegue(withIdentifier: "goToWebView", sender: nil)
+//                }
+//
+//            }else{
+//                //TODO: if not success
+//                self.showAlertForError(withMessage: "Something went wrong")
+//            }
+//        }
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier! == "goToWebView" {
+            let destination = segue.destination as! webView
+            destination.downloadUrl = filePath
+        }else if segue.identifier! == "goToSelectImage"{
+            let destination = segue.destination as! selectImage
+            destination.name = tatalImagesName
+            destination.urls = totalImageUrl
+        }
+    }
 
 }
+

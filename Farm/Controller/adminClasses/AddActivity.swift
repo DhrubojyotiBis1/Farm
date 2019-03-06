@@ -38,7 +38,7 @@ class AddActivity: UIViewController {
     
     private func networking(){
         //TODO: Networking is done here :
-        let url = URL()
+        let url = Url()
         Alamofire.request(url.ADD_FARM_ACTIVITY_URL, method: .post, parameters: ["actname" : activityName.text!,"actdisc" : descriptions.text!]).responseString{
                 response in
                 print(response)

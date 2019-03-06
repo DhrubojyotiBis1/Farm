@@ -33,7 +33,7 @@ class Login: UIViewController {
 
      private func checkLoginof(userName name : String , andPassword password :String){
         //TODO: Networking is done here :
-        let url = URL()
+        let url = Url()
         Alamofire.request(url.loginUrl ,method: .post , parameters : ["email": name,"password" : password]).responseJSON { (response) in
             if response.result.isSuccess{
                 let userJSON : JSON = JSON(response.result.value!)
