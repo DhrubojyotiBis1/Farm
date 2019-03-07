@@ -3002,7 +3002,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="nVH-jo-xkz"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Daily Activity" id="MRS-gQ-2tS"/>
+                    <navigationItem key="navigationItem" title="Daily Activity" id="MRS-gQ-2tS">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="cbR-L9-EGc"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="ney-yz-IVQ" id="cz7-Ji-WQT"/>
                         <segue destination="LOC-L4-IUU" kind="show" identifier="goToWebView" id="0vH-1y-T1y"/>
@@ -3411,7 +3413,7 @@
         <image name="selectcontact_btn" width="12" height="21"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="pxP-VH-PGW"/>
+        <segue reference="0vH-1y-T1y"/>
         <segue reference="hb9-R5-3Rn"/>
         <segue reference="WHf-W8-ecC"/>
         <segue reference="Qx0-nd-ant"/>

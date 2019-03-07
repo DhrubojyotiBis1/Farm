@@ -100,14 +100,12 @@ class webView: UIViewController ,UIWebViewDelegate{
                 let x = Int(percentage*100)
                 
                 if(x == 100){
+                    self.navigationController?.navigationBar.isUserInteractionEnabled = true
                     SVProgressHUD.dismiss()
                 }else{
-                    SVProgressHUD.showProgress(percentage, status: "Uploading (\(x)%)")
-                    
+                    SVProgressHUD.showProgress(percentage, status: "Downloading (\(x)%)")
+                    self.navigationController?.navigationBar.isUserInteractionEnabled = false
                 }
-                
-                
-                
             }
             
             
