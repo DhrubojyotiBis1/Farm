@@ -12,48 +12,55 @@ import SVProgressHUD
 import SwiftyJSON
 
 class ManagerDailyActiviy: UIViewController,UITableViewDelegate,UITableViewDataSource,cellDelegate {
-
+    
     func didClickedViewButton(cell: UITableViewCell) {
         totalImageUrl.removeAll()
         tatalImagesName.removeAll()
         flag = 1
-//        documentName.removeAll()
-//        videoName.removeAll()
-//        comment.removeAll()
-//        details.removeAll()
-//        areaCovered.removeAll()
+        //        documentName.removeAll()
+        //        videoName.removeAll()
+        //        comment.removeAll()
+        //        details.removeAll()
+        //        areaCovered.removeAll()
         indexPathOfViewImage = (tableView.indexPath(for: cell)?.row)!
         networking()
         SVProgressHUD.show()
         
     }
-    override func viewDidAppear(_ animated: Bool) {
+
+    override func viewWillAppear(_ animated: Bool) {
         self.tabBarController!.tabBar.isHidden = false
     }
-
+    
     
     func didClickedWatchButtonButton(cell: UITableViewCell) {
         let url = Url()
+        indexpath = (tableView.indexPath(for: cell)?.row)!
         let downloadURL = url.DOWNLOAD_URL + videoName[(tableView.indexPath(for: cell)?.row)!]
         let downloadCompleteURL = downloadURL.replacingOccurrences(of: " ", with: "%20")
         filePath = downloadCompleteURL
         downloadFile(url: downloadCompleteURL, name: "video\((tableView.indexPath(for: cell)?.row)!).mp4")
+        tag = 2
         SVProgressHUD.show()
-        self.performSegue(withIdentifier: "goToWebView", sender: nil)  
+        self.performSegue(withIdentifier: "goToWebView", sender: nil)
     }
     
     func didClickedViewDocumentButton(cell: UITableViewCell) {
+        indexpath = (tableView.indexPath(for: cell)?.row)!
         let url = Url()
         let downloadURL = url.DOWNLOAD_URL + documentName[(tableView.indexPath(for: cell)?.row)!]
         let downloadCompleteURL = downloadURL.replacingOccurrences(of: " ", with: "%20")
         filePath = downloadCompleteURL
         downloadFile(url: downloadCompleteURL, name: "document\((tableView.indexPath(for: cell)?.row)!).pdf")
+        tag = 1
         SVProgressHUD.show()
         self.performSegue(withIdentifier: "goToWebView", sender: nil)
     }
     
+    var tag = 0
     var flag = 0
     var filePath = ""
+    var indexpath:Int?
     var indexPathOfViewImage:Int?
     var tatalImagesName = [String]()
     var tatalImagesId = [String]()
@@ -66,11 +73,11 @@ class ManagerDailyActiviy: UIViewController,UITableViewDelegate,UITableViewDataS
     var activityName = [String]()
     var plotName = [String]()
     var totalImageUrl = [String]()
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         
         tableView.delegate = self
@@ -109,7 +116,7 @@ class ManagerDailyActiviy: UIViewController,UITableViewDelegate,UITableViewDataS
             }
         }
     }
-
+    
     private func dataParsing(json : JSON){
         var plotId = [String]()
         var activityId = [String]()
@@ -140,7 +147,7 @@ class ManagerDailyActiviy: UIViewController,UITableViewDelegate,UITableViewDataS
                 if json["add_farm"][i]["farm_id"].string! == withPlotId[j]{
                     plotName.append(json["add_farm"][i]["farm_name"].string!)
                 }
-
+                
             }
         }
         
@@ -153,7 +160,7 @@ class ManagerDailyActiviy: UIViewController,UITableViewDelegate,UITableViewDataS
             }
         }
     }
-
+    
     private func showAlertForError(withMessage message : String){
         //TODO: check wether username or password enntered is wrong:
         let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
@@ -167,15 +174,15 @@ class ManagerDailyActiviy: UIViewController,UITableViewDelegate,UITableViewDataS
     
     private func getTotalImages(json: JSON,totalId: [String]){
         
-            for j in 0..<json["imgdoc"].count{
-                if indexPathOfViewImage != nil{
-                    if totalId[indexPathOfViewImage!] == json["imgdoc"][j]["fileid"].string!{
-                        print(totalId[indexPathOfViewImage!])
-                        tatalImagesName.append(json["imgdoc"][j]["image_original"].string!)
-                        tatalImagesId.append(json["imgdoc"][j]["id"].string!)
-                    }
+        for j in 0..<json["imgdoc"].count{
+            if indexPathOfViewImage != nil{
+                if totalId[indexPathOfViewImage!] == json["imgdoc"][j]["fileid"].string!{
+                    print(totalId[indexPathOfViewImage!])
+                    tatalImagesName.append(json["imgdoc"][j]["image_original"].string!)
+                    tatalImagesId.append(json["imgdoc"][j]["id"].string!)
                 }
             }
+        }
         
         print(tatalImagesId)
         getUrl(totalImageId: tatalImagesId, Json: json)
@@ -204,28 +211,28 @@ class ManagerDailyActiviy: UIViewController,UITableViewDelegate,UITableViewDataS
     
     func downloadFile(url:String,name:String){
         
-//        let destination: DownloadRequest.DownloadFileDestination = { _, _ in
-//            var documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-//            documentsURL.appendPathComponent(name)
-//            return (documentsURL, [.removePreviousFile])
-//        }
-//
-//        print(url)
-//        Alamofire.download(url, to: destination).responseData { response in
-//
-//            if response.result.isSuccess{
-//                if let filePath = response.destinationURL?.path
-//                {
-//                    print(filePath)
-//                    self.filePath = filePath
-//                    self.performSegue(withIdentifier: "goToWebView", sender: nil)
-//                }
-//
-//            }else{
-//                //TODO: if not success
-//                self.showAlertForError(withMessage: "Something went wrong")
-//            }
-//        }
+        //        let destination: DownloadRequest.DownloadFileDestination = { _, _ in
+        //            var documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        //            documentsURL.appendPathComponent(name)
+        //            return (documentsURL, [.removePreviousFile])
+        //        }
+        //
+        //        print(url)
+        //        Alamofire.download(url, to: destination).responseData { response in
+        //
+        //            if response.result.isSuccess{
+        //                if let filePath = response.destinationURL?.path
+        //                {
+        //                    print(filePath)
+        //                    self.filePath = filePath
+        //                    self.performSegue(withIdentifier: "goToWebView", sender: nil)
+        //                }
+        //
+        //            }else{
+        //                //TODO: if not success
+        //                self.showAlertForError(withMessage: "Something went wrong")
+        //            }
+        //        }
         
     }
     
@@ -233,12 +240,15 @@ class ManagerDailyActiviy: UIViewController,UITableViewDelegate,UITableViewDataS
         if segue.identifier! == "goToWebView" {
             let destination = segue.destination as! webView
             destination.downloadUrl = filePath
+            destination.indexpath = indexpath!
+            destination.tag = self.tag
         }else if segue.identifier! == "goToSelectImage"{
             let destination = segue.destination as! selectImage
             destination.name = tatalImagesName
             destination.urls = totalImageUrl
+            destination.indexpath = indexPathOfViewImage!
         }
     }
-
+    
 }
 

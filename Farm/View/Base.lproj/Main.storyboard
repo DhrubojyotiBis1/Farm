@@ -3035,7 +3035,23 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="l5K-bp-WEC"/>
                     </view>
+                    <navigationItem key="navigationItem" id="b7z-Zg-eHk">
+                        <barButtonItem key="rightBarButtonItem" id="NnU-nJ-WgD">
+                            <button key="customView" opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" id="Cek-xD-e4Q">
+                                <rect key="frame" x="276" y="7" width="83" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.45009386540000001" green="0.98132258650000004" blue="0.4743030667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Download">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="downloadButtonClicked:" destination="LOC-L4-IUU" eventType="touchUpInside" id="qkk-92-v1A"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="downloadButton" destination="Cek-xD-e4Q" id="OJe-HN-EqS"/>
                         <outlet property="webView" destination="bTl-2e-1Fk" id="oXY-5f-LlN"/>
                     </connections>
                 </viewController>

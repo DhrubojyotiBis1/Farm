@@ -14,6 +14,7 @@ class selectImage: UIViewController,UITableViewDelegate,UITableViewDataSource {
     var name = [String]()
     var urls = [String]()
     var selectedUrl = ""
+    var indexpath = 0
 
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
@@ -47,7 +48,10 @@ class selectImage: UIViewController,UITableViewDelegate,UITableViewDataSource {
         if segue.identifier == "goToWebView" {
             let destination = segue.destination as! webView
             destination.downloadUrl = selectedUrl
+            destination.tag = 3
+            destination.indexpath = indexpath
         }
     }
+
     
 }

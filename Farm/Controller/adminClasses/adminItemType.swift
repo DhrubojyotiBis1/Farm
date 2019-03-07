@@ -17,6 +17,7 @@ class adminItemType: UIViewController,UITableViewDelegate,UITableViewDataSource 
     var name = [String]()
     var discriptions = [String]()
     var manufacturer = [String]()
+    
 
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
