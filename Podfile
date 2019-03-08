@@ -9,5 +9,4 @@ target 'Farm' do
 pod 'Alamofire'
 pod 'SwiftyJSON'
 pod 'SVProgressHUD'
-pod "FileExplorer", "~> 1.0.4"
 end

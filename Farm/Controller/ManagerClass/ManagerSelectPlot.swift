@@ -13,13 +13,17 @@ import SwiftyJSON
 
 protocol ManagerPlotSelected {
     func getPlotIdAndNameSelected(name:String , id:String)
+    func getActivityIdAndName(name:String ,id:String)
 }
 
 class ManagerSelectPlot: UIViewController,UITableViewDelegate,UITableViewDataSource {
-
+    
+    var tag = 1
     @IBOutlet weak var tableView: UITableView!
     var plotName = [String]()
     var plotId = [String]()
+    var activityId = [String]()
+    var activityName = [String]()
     var delegate : ManagerPlotSelected?
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +31,9 @@ class ManagerSelectPlot: UIViewController,UITableViewDelegate,UITableViewDataSou
         // Do any additional setup after loading the view.
         tableView.delegate = self
         tableView.dataSource = self
+        if tag == 2 {
+            navigationController?.title = "Select Activity"
+        }
         networking()
     }
     
@@ -49,6 +56,11 @@ class ManagerSelectPlot: UIViewController,UITableViewDelegate,UITableViewDataSou
             plotName.append(json["add_farm"][i]["farm_name"].string!)
             plotId.append(json["add_farm"][i]["farm_id"].string!)
         }
+        
+        for i in 0..<json["addfarmactivity"].count{
+            activityId.append(json["addfarmactivity"][i]["activity_id"].string!)
+            activityName.append(json["addfarmactivity"][i]["activity_name"].string!)
+        }
 
             self.tableView.reloadData()
             SVProgressHUD.dismiss()
@@ -56,17 +68,31 @@ class ManagerSelectPlot: UIViewController,UITableViewDelegate,UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return plotName.count
+        if tag == 1{
+            return plotName.count
+        }else{
+            return activityName.count
+        }
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "managerSelectPoltCell", for: indexPath) as! ManagerSelectPlotCell
-        
-        cell.plotName.text = plotName[indexPath.row]
-        
-        return cell
+        if tag == 1{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "managerSelectPoltCell", for: indexPath) as! ManagerSelectPlotCell
+            
+            cell.plotName.text = plotName[indexPath.row]
+            
+            return cell
+        }else{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "managerSelectPoltCell", for: indexPath) as! ManagerSelectPlotCell
+            cell.plotName.text = activityName[indexPath.row]
+            return cell
+        }
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        delegate?.getPlotIdAndNameSelected(name: plotName[indexPath.row], id: plotId[indexPath.row])
+        if tag == 1 {
+           delegate?.getPlotIdAndNameSelected(name: plotName[indexPath.row], id: plotId[indexPath.row])
+        }else{
+            delegate?.getActivityIdAndName(name: activityName[indexPath.row], id: activityId[indexPath.row])
+        }
         navigationController?.popViewController(animated: true)
     }
     

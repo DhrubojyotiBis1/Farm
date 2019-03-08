@@ -236,6 +236,10 @@ class ManagerDailyActiviy: UIViewController,UITableViewDelegate,UITableViewDataS
         
     }
     
+    @IBAction func addButtonPressed(_ sender: Any) {
+        SVProgressHUD.dismiss()
+        performSegue(withIdentifier: "goToAddDailyActivity", sender: sender)
+    }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier! == "goToWebView" {
             let destination = segue.destination as! webView

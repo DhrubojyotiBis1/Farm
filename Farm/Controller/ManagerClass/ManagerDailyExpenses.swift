@@ -10,7 +10,12 @@ import UIKit
 import SVProgressHUD
 import Alamofire
 
+
 class ManagerDailyExpenses: UITableViewController,ManagerPlotSelected {
+    func getActivityIdAndName(name: String, id: String) {
+        //TODO: dont write any code!
+    }
+    
     func getPlotIdAndNameSelected(name: String, id: String) {
         selectedPlot.text! =  name
         plotId = id
@@ -25,7 +30,6 @@ class ManagerDailyExpenses: UITableViewController,ManagerPlotSelected {
     @IBOutlet weak var unit: UITextField!
     @IBOutlet weak var descriptions: UITextField!
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -86,6 +90,7 @@ class ManagerDailyExpenses: UITableViewController,ManagerPlotSelected {
         if segue.identifier == "goToSelectPlot"{
             let destination = segue.destination as! ManagerSelectPlot
             destination.delegate = self
+            destination.tag = 1
         }
     }
     
@@ -130,5 +135,7 @@ class ManagerDailyExpenses: UITableViewController,ManagerPlotSelected {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    
 
 }

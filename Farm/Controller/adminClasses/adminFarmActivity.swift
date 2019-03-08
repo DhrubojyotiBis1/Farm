@@ -60,7 +60,7 @@ class adminFarmActivity: UIViewController ,UITableViewDelegate,UITableViewDataSo
     private func dataParsing(json : JSON){
         for  i in 0...(json["addfarmactivity"].count - 1){
             self.farmName.append(json["addfarmactivity"][i]["activity_name"].string!)
-            self.descriptions.append(json["addfarmactivity"][i]["activity_name"].string!)
+            self.descriptions.append(json["addfarmactivity"][i]["activity_disc"].string!)
             
         }
         self.tableView.reloadData()
