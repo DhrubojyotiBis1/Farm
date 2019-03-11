@@ -27,6 +27,7 @@
 		6F14EE24222BD9E80001841A /* AddItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F14EE23222BD9E80001841A /* AddItems.swift */; };
 		6F19AB44220EB2F800253C51 /* Url.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F19AB43220EB2F800253C51 /* Url.swift */; };
 		6F19AB89220F29A500253C51 /* splash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F19AB88220F29A500253C51 /* splash.swift */; };
+		6F1D1F70223515200030CF5B /* checkForSVProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1D1F6F223515200030CF5B /* checkForSVProgressHUD.swift */; };
 		6F208B08222D9BEB00B1288F /* ManagerSelectPlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F208B07222D9BEB00B1288F /* ManagerSelectPlot.swift */; };
 		6F208B0A222D9C0D00B1288F /* ManagerSelectPlotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F208B09222D9C0D00B1288F /* ManagerSelectPlotCell.swift */; };
 		6F20E6DE220CD7E60075A04B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F20E6DD220CD7E60075A04B /* AppDelegate.swift */; };
@@ -73,6 +74,7 @@
 		6F14EE23222BD9E80001841A /* AddItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItems.swift; sourceTree = "<group>"; };
 		6F19AB43220EB2F800253C51 /* Url.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Url.swift; sourceTree = "<group>"; };
 		6F19AB88220F29A500253C51 /* splash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = splash.swift; sourceTree = "<group>"; };
+		6F1D1F6F223515200030CF5B /* checkForSVProgressHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = checkForSVProgressHUD.swift; sourceTree = "<group>"; };
 		6F208B07222D9BEB00B1288F /* ManagerSelectPlot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerSelectPlot.swift; sourceTree = "<group>"; };
 		6F208B09222D9C0D00B1288F /* ManagerSelectPlotCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerSelectPlotCell.swift; sourceTree = "<group>"; };
 		6F20E6DA220CD7E60075A04B /* Farm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Farm.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -154,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				6F19AB43220EB2F800253C51 /* Url.swift */,
+				6F1D1F6F223515200030CF5B /* checkForSVProgressHUD.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -378,6 +381,7 @@
 				6FD32367220E2D490002B695 /* adminManager.swift in Sources */,
 				6F101FD6222813DE0001A081 /* adminFarmCell.swift in Sources */,
 				6F14EE1C222B16140001841A /* AddPlot.swift in Sources */,
+				6F1D1F70223515200030CF5B /* checkForSVProgressHUD.swift in Sources */,
 				6F44E169222EE22C00C4738F /* ManagerDailyActivityCell.swift in Sources */,
 				6F14EE1E222B181B0001841A /* AddActivity.swift in Sources */,
 				6F23A900222D386D0072AF24 /* adminSelectManagerCell.swift in Sources */,

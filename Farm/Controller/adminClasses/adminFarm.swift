@@ -19,6 +19,7 @@ class adminFarm: UIViewController,UITableViewDelegate,UITableViewDataSource{
     var farmSize = [String]()
     var descriptions = [String]()
     var location = [String]()
+    var flag = 0
     //TODO: DispatchGroup is used to wait untill the data is fetch back
     let dispatchGroup = DispatchGroup()
     
@@ -29,6 +30,8 @@ class adminFarm: UIViewController,UITableViewDelegate,UITableViewDataSource{
             addButton.tintColor = UIColor(white: 0.95, alpha: 1)
             addButton.isEnabled = false
         }
+        let svProgressHudCheck = checkForSVProgressHUD()
+        svProgressHudCheck.checkForSVProgressHUD(withFlag: flag)
 
     }
     
@@ -76,6 +79,7 @@ class adminFarm: UIViewController,UITableViewDelegate,UITableViewDataSource{
             //TODO: run only when the dispatch group does not have anything
             self.tableView.reloadData()
             SVProgressHUD.dismiss()
+            self.flag = 1
         }
     }
     

@@ -14,6 +14,12 @@ import CoreData
 
 class Login: UIViewController {
 
+    
+
+
+    @IBOutlet var logInView: UIView!
+    
+    @IBOutlet weak var topcontrain: NSLayoutConstraint!
     @IBOutlet weak var userName: UITextField!
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var loginButton: UIButton!
@@ -23,14 +29,24 @@ class Login: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         fixUI()
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(viewTapped))
+        
+        logInView.addGestureRecognizer(tapGesture)
+        SVProgressHUD.dismiss()
     }
+    
     
     @IBAction func onLoginButtonClicked(_ sender: Any) {
         checkLoginof(userName: userName.text!, andPassword: password.text!)
         SVProgressHUD.show()
     }
     
-
+    
+    @objc private func viewTapped(){
+        userName.endEditing(true)
+        password.endEditing(true)
+    }
+    
      private func checkLoginof(userName name : String , andPassword password :String){
         //TODO: Networking is done here :
         let url = Url()

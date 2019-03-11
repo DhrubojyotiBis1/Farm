@@ -44,6 +44,8 @@ class AddPlot: UITableViewController,selectedData {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.allowsSelection = false
+        self.tabBarController!.tabBar.isHidden = true
+        SVProgressHUD.dismiss()
     }
 
     @IBAction func doneButtinClicked(_ sender: Any) {

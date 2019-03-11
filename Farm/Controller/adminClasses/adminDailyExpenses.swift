@@ -22,6 +22,7 @@ class adminDailyExpenses: UIViewController,UITableViewDelegate,UITableViewDataSo
     var supplier = [String]()
     var unitPrice = [String]()
     var descriptions = [String]()
+    var flag = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +40,11 @@ class adminDailyExpenses: UIViewController,UITableViewDelegate,UITableViewDataSo
         }
 
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        let svProgressHudCheck = checkForSVProgressHUD()
+        svProgressHudCheck.checkForSVProgressHUD(withFlag: flag)
     }
     
     private func networking(){
@@ -67,6 +73,7 @@ class adminDailyExpenses: UIViewController,UITableViewDelegate,UITableViewDataSo
         }
         self.tableView.reloadData()
         SVProgressHUD.dismiss()
+        flag = 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

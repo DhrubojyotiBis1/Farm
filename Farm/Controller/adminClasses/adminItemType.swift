@@ -17,6 +17,7 @@ class adminItemType: UIViewController,UITableViewDelegate,UITableViewDataSource 
     var name = [String]()
     var discriptions = [String]()
     var manufacturer = [String]()
+    var flag = 0
     
 
     @IBOutlet weak var tableView: UITableView!
@@ -38,6 +39,8 @@ class adminItemType: UIViewController,UITableViewDelegate,UITableViewDataSource 
             addButton.tintColor = UIColor(white: 0.95, alpha: 1)
             addButton.isEnabled = false
         }
+        let svProgressHudCheck = checkForSVProgressHUD()
+        svProgressHudCheck.checkForSVProgressHUD(withFlag: flag)
         
     }
     @IBAction func addButtonClicked(_ sender: Any) {
@@ -68,6 +71,7 @@ class adminItemType: UIViewController,UITableViewDelegate,UITableViewDataSource 
         }
         self.tableView.reloadData()
         SVProgressHUD.dismiss()
+        flag = 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

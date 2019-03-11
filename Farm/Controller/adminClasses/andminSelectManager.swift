@@ -24,6 +24,7 @@ class andminSelectManager: UIViewController,UITableViewDelegate,UITableViewDataS
     var managerId = [String]()
     var farmName = [String]()
     var farmId = [String]()
+    var flag = 0
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -37,6 +38,11 @@ class andminSelectManager: UIViewController,UITableViewDelegate,UITableViewDataS
             navigationItem.title! = "Select Farm"
         }
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        let svProgressHudCheck = checkForSVProgressHUD()
+        svProgressHudCheck.checkForSVProgressHUD(withFlag: flag)
     }
     
 
@@ -109,6 +115,7 @@ class andminSelectManager: UIViewController,UITableViewDelegate,UITableViewDataS
         }
         self.tableView.reloadData()
         SVProgressHUD.dismiss()
+        flag = 1
     }
     
     private func showAlertForError(withMessage message : String){

@@ -25,6 +25,7 @@ class adminPlot: UIViewController,UITableViewDelegate,UITableViewDataSource {
     var realManagerId = [String]()
     var managerId = [String]()
     let dispatchGroup = DispatchGroup()
+    var flag = 0
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -34,6 +35,8 @@ class adminPlot: UIViewController,UITableViewDelegate,UITableViewDataSource {
             addButton.tintColor = UIColor(white: 0.95, alpha: 1)
             addButton.isEnabled = false
         }
+        let svProgressHudCheck = checkForSVProgressHUD()
+        svProgressHudCheck.checkForSVProgressHUD(withFlag: flag)
 
     }
     
@@ -104,6 +107,7 @@ class adminPlot: UIViewController,UITableViewDelegate,UITableViewDataSource {
             //TODO: run only when the dispatch group does not have anything
             self.tableView.reloadData()
             SVProgressHUD.dismiss()
+            self.flag = 1
         }
     }
     private func getAddressFromLatLon(pdblLatitude: String, withLongitude pdblLongitude: String) {

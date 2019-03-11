@@ -17,11 +17,13 @@ class ManagerDailyActiviy: UIViewController,UITableViewDelegate,UITableViewDataS
         totalImageUrl.removeAll()
         tatalImagesName.removeAll()
         flag = 1
-        //        documentName.removeAll()
-        //        videoName.removeAll()
-        //        comment.removeAll()
-        //        details.removeAll()
-        //        areaCovered.removeAll()
+                activityName.removeAll()
+                plotName.removeAll()
+                documentName.removeAll()
+                videoName.removeAll()
+                comment.removeAll()
+                details.removeAll()
+                areaCovered.removeAll()
         indexPathOfViewImage = (tableView.indexPath(for: cell)?.row)!
         networking()
         SVProgressHUD.show()
@@ -85,6 +87,8 @@ class ManagerDailyActiviy: UIViewController,UITableViewDelegate,UITableViewDataS
         tableView.allowsSelection = false
         networking()
         
+        
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -99,7 +103,7 @@ class ManagerDailyActiviy: UIViewController,UITableViewDelegate,UITableViewDataS
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return plotName.count
+        return areaCovered.count
     }
     
     private func networking(){
@@ -110,6 +114,7 @@ class ManagerDailyActiviy: UIViewController,UITableViewDelegate,UITableViewDataS
             if response.result.isSuccess{
                 let userjson:JSON = JSON(response.result.value!)
                 self.dataParsing(json: userjson)
+                print("yes")
             }else{
                 print("Error")
                 self.showAlertForError(withMessage: "Check your internet connection")
@@ -121,7 +126,7 @@ class ManagerDailyActiviy: UIViewController,UITableViewDelegate,UITableViewDataS
         var plotId = [String]()
         var activityId = [String]()
         var imageId = [String]()
-        for  i in 0...(json["dailyactivity"].count - 1){
+        for  i in 0..<json["dailyactivity"].count {
             imageId.append(json["dailyactivity"][i]["dactivity_id"].string!)
             documentName.append(json["dailyactivity"][i]["docname"].string!)
             videoName.append(json["dailyactivity"][i]["vidname"].string!)
@@ -131,9 +136,9 @@ class ManagerDailyActiviy: UIViewController,UITableViewDelegate,UITableViewDataS
             plotId.append(json["dailyactivity"][i]["farmid"].string!)
             areaCovered.append(json["dailyactivity"][i]["hect"].string!)
         }
+        print(plotId.count)
         getPlotNameAndActivityName(withPlotId: plotId, andActivityId: activityId, json: json)
         getTotalImages(json: json, totalId: imageId)
-        print(plotName.count)
         if flag == 0{
             self.tableView.reloadData()
             SVProgressHUD.dismiss()
@@ -141,32 +146,37 @@ class ManagerDailyActiviy: UIViewController,UITableViewDelegate,UITableViewDataS
     }
     
     private func getPlotNameAndActivityName(withPlotId:[String],andActivityId:[String],json:JSON){
-        for i in 0..<(json["add_farm"].count){
+        var count = 0
+        for j in 0..<withPlotId.count{
             //TODO: finding plot name
-            for j in 0..<(withPlotId.count){
-                if json["add_farm"][i]["farm_id"].string! == withPlotId[j]{
+            for i in 0..<(json["add_farm"].count){
+                if withPlotId[j] == json["add_farm"][i]["farm_id"].string!{
+                    count+=1
                     plotName.append(json["add_farm"][i]["farm_name"].string!)
                 }
                 
             }
         }
         
-        for i in 0..<(json["addfarmactivity"].count){
+        for j in 0..<andActivityId.count{
             //TODO: finding activity name
-            for j in 0..<(andActivityId.count){
+            for i in 0..<(json["addfarmactivity"].count){
                 if json["addfarmactivity"][i]["activity_id"].string! == andActivityId[j]{
                     activityName.append(json["addfarmactivity"][i]["activity_name"].string!)
                 }
             }
         }
+        
+        print(plotName.count)
+        print(comment.count)
+        print(activityName.count)
+        
     }
     
     private func showAlertForError(withMessage message : String){
         //TODO: check wether username or password enntered is wrong:
         let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-        let reEnter = UIAlertAction(title: "Retry", style: .default) { (action) in
-            self.networking()
-        }
+        let reEnter = UIAlertAction(title: "Retry", style: .cancel) 
         alert.addAction(reEnter)
         present(alert, animated: true, completion: nil)
         SVProgressHUD.dismiss()
@@ -177,14 +187,13 @@ class ManagerDailyActiviy: UIViewController,UITableViewDelegate,UITableViewDataS
         for j in 0..<json["imgdoc"].count{
             if indexPathOfViewImage != nil{
                 if totalId[indexPathOfViewImage!] == json["imgdoc"][j]["fileid"].string!{
-                    print(totalId[indexPathOfViewImage!])
                     tatalImagesName.append(json["imgdoc"][j]["image_original"].string!)
                     tatalImagesId.append(json["imgdoc"][j]["id"].string!)
+                    print("yes")
                 }
             }
         }
         
-        print(tatalImagesId)
         getUrl(totalImageId: tatalImagesId, Json: json)
     }
     
@@ -194,7 +203,6 @@ class ManagerDailyActiviy: UIViewController,UITableViewDelegate,UITableViewDataS
         for i in 0..<tatalImagesId.count {
             for j in 0..<Json["imgdoc"].count{
                 if tatalImagesId[i] == Json["imgdoc"][j]["id"].string! {
-                    print(tatalImagesId[i])
                     let downloadURL = url.DOWNLOAD_URL + Json["imgdoc"][j]["file"].string!
                     let downloadCompleteURL = downloadURL.replacingOccurrences(of: " ", with: "%20")
                     totalImageUrl.append(downloadCompleteURL)
@@ -202,9 +210,12 @@ class ManagerDailyActiviy: UIViewController,UITableViewDelegate,UITableViewDataS
             }
         }
         
-        print(totalImageUrl)
-        if totalImageUrl.count != 0{
-            performSegue(withIdentifier: "goToSelectImage", sender: nil)
+        if flag != 0{
+            if totalImageUrl.count != 0{
+                performSegue(withIdentifier: "goToSelectImage", sender: nil)
+            }else{
+                showAlertForError(withMessage: "No image exist!")
+            }
         }
         
     }
@@ -234,6 +245,16 @@ class ManagerDailyActiviy: UIViewController,UITableViewDelegate,UITableViewDataS
         //            }
         //        }
         
+    }
+    
+    
+    
+    @IBAction func logOutButtonPressed(_ sender: Any) {
+        
+        UserDefaults.standard.removeObject(forKey: "username")
+        UserDefaults.standard.removeObject(forKey: "password")
+        UserDefaults.standard.removeObject(forKey: "type")
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func addButtonPressed(_ sender: Any) {

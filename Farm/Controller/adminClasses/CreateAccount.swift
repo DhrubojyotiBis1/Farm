@@ -27,6 +27,7 @@ class CreateAccount: UITableViewController {
 
         // Do any additional setup after loading the view.
        self.tabBarController!.tabBar.isHidden = true
+        SVProgressHUD.dismiss()
     }
     @IBAction func doneButtonPressed(_ sender: Any) {
         if userNane.text! == "" || phoneNumber.text! == "" || managerId.text! == "" || email.text! == "" || password.text! == "" || name.text! == ""{

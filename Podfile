@@ -9,4 +9,7 @@ target 'Farm' do
 pod 'Alamofire'
 pod 'SwiftyJSON'
 pod 'SVProgressHUD'
+pod 'BSImagePicker', '~> 2.8'
+pod 'YPImagePicker'
+
 end

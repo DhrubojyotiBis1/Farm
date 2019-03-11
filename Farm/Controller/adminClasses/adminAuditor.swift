@@ -16,6 +16,7 @@ class adminAuditor: UIViewController,UITableViewDelegate,UITableViewDataSource {
     @IBOutlet weak var addButton: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
     var name = [String]()
+    var flag = 0
     var userName = [String]()
     var email = [String]()
     var managerId = [String]()
@@ -27,6 +28,9 @@ class adminAuditor: UIViewController,UITableViewDelegate,UITableViewDataSource {
             addButton.tintColor = UIColor(white: 0.95, alpha: 1)
             addButton.isEnabled = false
         }
+        
+        let svProgressHudCheck = checkForSVProgressHUD()
+        svProgressHudCheck.checkForSVProgressHUD(withFlag: flag)
 
     }
     override func viewDidLoad() {
@@ -69,6 +73,7 @@ class adminAuditor: UIViewController,UITableViewDelegate,UITableViewDataSource {
         }
         self.tableView.reloadData()
         SVProgressHUD.dismiss()
+        flag = 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return name.count

@@ -19,6 +19,8 @@ class AddItems: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.tabBarController!.tabBar.isHidden = true
+        SVProgressHUD.dismiss()
     }
 
     @IBAction func doneButtonPressed(_ sender: Any) {

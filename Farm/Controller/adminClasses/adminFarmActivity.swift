@@ -16,6 +16,7 @@ class adminFarmActivity: UIViewController ,UITableViewDelegate,UITableViewDataSo
     @IBOutlet weak var addButton: UIBarButtonItem!
     var descriptions = [String]()
     var farmName = [String]()
+    var flag = 0
     
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController!.tabBar.isHidden = false
@@ -24,7 +25,10 @@ class adminFarmActivity: UIViewController ,UITableViewDelegate,UITableViewDataSo
             addButton.tintColor = UIColor(white: 0.95, alpha: 1)
             addButton.isEnabled = false
         }
+        let svProgressHudCheck = checkForSVProgressHUD()
+        svProgressHudCheck.checkForSVProgressHUD(withFlag: flag)
     }
+
     
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
@@ -65,6 +69,7 @@ class adminFarmActivity: UIViewController ,UITableViewDelegate,UITableViewDataSo
         }
         self.tableView.reloadData()
         SVProgressHUD.dismiss()
+        flag = 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

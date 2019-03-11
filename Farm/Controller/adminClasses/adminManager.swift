@@ -14,6 +14,7 @@ import SVProgressHUD
 class adminManager: UIViewController,UITableViewDataSource,UITableViewDelegate{
     
     @IBOutlet weak var tableView: UITableView!
+    var flag = 0
     var name = [String]()
     var userName = [String]()
     var email = [String]()
@@ -21,6 +22,7 @@ class adminManager: UIViewController,UITableViewDataSource,UITableViewDelegate{
     var contactNumber = [String]()
     
     @IBOutlet weak var addButton: UIBarButtonItem!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,18 +32,24 @@ class adminManager: UIViewController,UITableViewDataSource,UITableViewDelegate{
         tableView.backgroundColor = UIColor(white: 0.95, alpha: 1)
         tableView.allowsSelection = false
         networking()
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         //TODO: removes the back button
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(), style: .plain, target: self, action: nil)
         self.tabBarController!.tabBar.isHidden = false
+    
         let type = Int(String(describing: (UserDefaults.standard.value(forKey: "type"))!))!
         if type == 3 {
             addButton.tintColor = UIColor(white: 0.95, alpha: 1)
             addButton.isEnabled = false
         }
-
+        let svProgressHudCheck = checkForSVProgressHUD()
+        svProgressHudCheck.checkForSVProgressHUD(withFlag: flag)
+        
     }
+    
+
 
     @IBAction func logOutButtonclicked(_ sender: UIButton) {
         //TODO: takes the user to the login page when logout button is clicked
@@ -77,6 +85,7 @@ class adminManager: UIViewController,UITableViewDataSource,UITableViewDelegate{
         }
         self.tableView.reloadData()
         SVProgressHUD.dismiss()
+        flag = 1
     }
     @IBAction func addButtonPressed(_ sender: Any) {
         performSegue(withIdentifier: "createAccount", sender: sender)
