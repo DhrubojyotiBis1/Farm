@@ -137,32 +137,34 @@ class adminDailyExpenses: UIViewController,UITableViewDelegate,UITableViewDataSo
     
     @IBAction func searchButtonPessed(_ sender: Any) {
         indexPath.removeAll()
-        if searchVisible == false{
-            searchTextView.isHidden = false
-            searchTextView.isEnabled = true
-            searchVisible = true
-            print("Entered")
-            cancelButton.isEnabled = true
-            cancelButton.title = "Cancel"
-            cancelButton.tintColor = UIColor.darkGray
-        }else{
-            //according to the search reload the table view
-            
-            if searchTextView.text! == ""{
-                showAlertForError(withMessage: "Nothing to be searched", tag: 1)
+        if purpose.count > 0{
+            if searchVisible == false{
+                searchTextView.isHidden = false
+                searchTextView.isEnabled = true
+                searchVisible = true
+                print("Entered")
+                cancelButton.isEnabled = true
+                cancelButton.title = "Cancel"
+                cancelButton.tintColor = UIColor.darkGray
             }else{
-                SVProgressHUD.show()
-                let search = searchTextView.text!
+                //according to the search reload the table view
                 
-                searchTextView.text = ""
-                searchTextView.isHidden = true
-                searchTextView.isEnabled = false
-                searchVisible = false
-                searchFor(search: search)
-            }
+                if searchTextView.text! == ""{
+                    showAlertForError(withMessage: "Nothing to be searched", tag: 1)
+                }else{
+                    SVProgressHUD.show()
+                    let search = searchTextView.text!
+                    
+                    searchTextView.text = ""
+                    searchTextView.isHidden = true
+                    searchTextView.isEnabled = false
+                    searchVisible = false
+                    searchFor(search: search)
+                }
+            } 
+        }else{
+            showAlertForError(withMessage: "Please wait!", tag: 1)
         }
-        
-        
     }
     
     @IBAction func cancelButtonPressed(_ sender: Any) {

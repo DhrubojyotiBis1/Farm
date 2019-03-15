@@ -98,29 +98,33 @@ class adminManager: UIViewController,UITableViewDataSource,UITableViewDelegate{
     
     @IBAction func searchButtonPressed(_ sender: Any) {
         indexPath.removeAll()
-        if searchVisible == false{
-            searchTextField.isHidden = false
-            searchTextField.isEnabled = true
-            searchVisible = true
-            print("Entered")
-            cancelButton.isEnabled = true
-            cancelButton.title = "Cancel"
-            cancelButton.tintColor = UIColor.darkGray
-        }else{
-            //according to the search reload the table view
-            
-            if searchTextField.text! == ""{
-                showAlertForError(withMessage: "Nothing to be searched", tag: 1)
+        if name.count > 0{
+            if searchVisible == false{
+                searchTextField.isHidden = false
+                searchTextField.isEnabled = true
+                searchVisible = true
+                print("Entered")
+                cancelButton.isEnabled = true
+                cancelButton.title = "Cancel"
+                cancelButton.tintColor = UIColor.darkGray
             }else{
-                SVProgressHUD.show()
-                let search = searchTextField.text!
+                //according to the search reload the table view
                 
-                searchTextField.text = ""
-                searchTextField.isHidden = true
-                searchTextField.isEnabled = false
-                searchVisible = false
-                searchFor(search: search)
+                if searchTextField.text! == ""{
+                    showAlertForError(withMessage: "Nothing to be searched", tag: 1)
+                }else{
+                    SVProgressHUD.show()
+                    let search = searchTextField.text!
+                    
+                    searchTextField.text = ""
+                    searchTextField.isHidden = true
+                    searchTextField.isEnabled = false
+                    searchVisible = false
+                    searchFor(search: search)
+                }
             }
+        }else{
+            showAlertForError(withMessage: "Please wait!", tag: 1)
         }
     }
     
